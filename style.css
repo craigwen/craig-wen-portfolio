@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #1a1a18;
+  --paper: #faf8f4;
+  --muted: #6b6862;
+  --rule: #ddd9d0;
+  --accent: #8a3b1f;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --measure: 38rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+main, header, footer {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero {
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 7vw, 3.6rem);
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.hero .role {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0 0 0.2rem;
+}
+
+.hero .tagline {
+  color: var(--muted);
+  margin: 0 0 0.2rem;
+}
+
+.hero .location {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
+.contact {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.contact a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+}
+
+.contact a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.summary {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.summary p {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.55;
+  margin: 0 0 1.3rem;
+}
+
+.summary p:last-child { margin-bottom: 0; }
+
+section h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.experience, .education, .skills {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.job, .edu {
+  margin-bottom: 2.2rem;
+}
+
+.job:last-child, .edu:last-child {
+  margin-bottom: 0;
+}
+
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.job h3, .edu h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.dates {
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.title {
+  margin: 0.15rem 0 0.7rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+.job ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.job li {
+  margin-bottom: 0.5rem;
+  font-size: 0.97rem;
+}
+
+.job li:last-child { margin-bottom: 0; }
+
+.job.earlier h3 {
+  font-size: 1.1rem;
+}
+
+.edu p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.skills p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+footer {
+  padding: 2.5rem 1.5rem 4rem;
+  border-top: 1px solid var(--rule);
+  margin-top: 2.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .hero { padding-top: 3rem; }
+}
