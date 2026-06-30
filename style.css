@@ -6,6 +6,9 @@
   --muted: #6b6862;
   --rule: #ddd9d0;
   --accent: #8a3b1f;
+  --hero-bg: #c2410c;
+  --hero-bg2: #e85d2f;
+  --hero-ink: #fff6ea;
   --serif: 'Fraunces', Georgia, serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --measure: 38rem;
@@ -25,57 +28,161 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-main, header, footer {
+main, footer {
   max-width: var(--measure);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 .hero {
-  padding-top: 5rem;
-  padding-bottom: 3rem;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(120% 140% at 18% 12%, var(--hero-bg2) 0%, var(--hero-bg) 55%);
+  color: var(--hero-ink);
+  overflow: hidden;
+  padding: 2rem 1.5rem;
+}
+
+.hero-inner {
+  max-width: 34rem;
+  animation: rise 0.8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-doodle {
+  position: absolute;
+  top: 8%;
+  right: 10%;
+  font-size: 2.2rem;
+  color: rgba(255, 246, 234, 0.35);
+  animation: spin 14s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin: 0 0 0.75rem;
+}
+
+.wave {
+  display: inline-block;
+  animation: wave 2.2s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(16deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(16deg); }
+  40% { transform: rotate(-4deg); }
 }
 
 .hero h1 {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(2.6rem, 7vw, 3.6rem);
-  margin: 0 0 0.4rem;
-  letter-spacing: -0.01em;
+  font-size: clamp(3.2rem, 11vw, 5.6rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .hero .role {
-  font-size: 1.15rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 500;
-  margin: 0 0 0.2rem;
+  margin: 0 0 0.35rem;
+}
+
+.hero .role .at {
+  opacity: 0.6;
+  font-style: italic;
 }
 
 .hero .tagline {
-  color: var(--muted);
-  margin: 0 0 0.2rem;
+  opacity: 0.88;
+  margin: 0 0 0.6rem;
+  font-size: 1.02rem;
+}
+
+.hero .tagline .dot {
+  opacity: 0.55;
 }
 
 .hero .location {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin: 0 0 1.5rem;
+  opacity: 0.8;
+  font-size: 0.92rem;
+  margin: 0 0 2rem;
+}
+
+.flag {
+  display: inline-block;
+  transform: translateY(1px);
 }
 
 .contact {
   display: flex;
-  gap: 1.25rem;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .contact a {
-  color: var(--accent);
+  color: var(--hero-ink);
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-bottom: 1px solid transparent;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding-bottom: 2px;
+  background-image: linear-gradient(var(--hero-ink), var(--hero-ink));
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease;
 }
 
 .contact a:hover {
-  border-bottom-color: var(--accent);
+  background-size: 100% 1.5px;
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--hero-ink);
+  opacity: 0.75;
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scroll-cue svg {
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
 .summary {
@@ -100,6 +207,11 @@ section h2 {
   letter-spacing: 0.12em;
   color: var(--muted);
   margin: 0 0 1.5rem;
+}
+
+section h2::before {
+  content: '✦ ';
+  color: var(--hero-bg);
 }
 
 .experience, .education, .skills {
@@ -166,9 +278,33 @@ section h2 {
   font-size: 0.95rem;
 }
 
-.skills p {
+.skill-tags {
+  list-style: none;
   margin: 0;
-  font-size: 1rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-tags li {
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.skill-tags li:nth-child(odd) { transform: rotate(-1.2deg); }
+.skill-tags li:nth-child(even) { transform: rotate(1.2deg); }
+
+.skill-tags li:hover {
+  background: var(--hero-bg);
+  border-color: var(--hero-bg);
+  color: var(--hero-ink);
+  transform: rotate(0deg) scale(1.05);
 }
 
 footer {
@@ -179,6 +315,14 @@ footer {
   font-size: 0.85rem;
 }
 
+.footer-sign {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink);
+  font-size: 0.95rem;
+  margin: 0 0 0.6rem;
+}
+
 footer a {
   color: var(--accent);
   text-decoration: none;
@@ -186,5 +330,5 @@ footer a {
 
 @media (max-width: 480px) {
   body { font-size: 16px; }
-  .hero { padding-top: 3rem; }
+  .hero-doodle { font-size: 1.6rem; top: 6%; right: 8%; }
 }

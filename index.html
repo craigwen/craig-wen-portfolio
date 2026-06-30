@@ -10,17 +10,27 @@
 <body>
 
 <header class="hero">
-  <h1>Craig Wen</h1>
-  <p class="role">Content Designer @ Meta</p>
-  <p class="tagline">UX Writing · Conversational UX · AI Systems</p>
-  <p class="location">London, England</p>
-  <nav class="contact">
-    <a href="mailto:craigwen@gmail.com">craigwen@gmail.com</a>
-    <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>
-  </nav>
+  <span class="hero-doodle" aria-hidden="true">✦</span>
+  <div class="hero-inner">
+    <p class="eyebrow">Hello, I'm <span class="wave" aria-hidden="true">👋</span></p>
+    <h1>Craig Wen</h1>
+    <p class="role">Content Designer <span class="at">@</span> Meta</p>
+    <p class="tagline">UX Writing <span class="dot">·</span> Conversational UX <span class="dot">·</span> AI Systems</p>
+    <p class="location">London, England&nbsp;<span class="flag" title="United Kingdom">🇬🇧</span></p>
+    <nav class="contact">
+      <a href="mailto:craigwen@gmail.com">craigwen@gmail.com</a>
+      <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>
+    </nav>
+  </div>
+  <a class="scroll-cue" href="#main-content" aria-label="Scroll down">
+    <span>keep scrolling</span>
+    <svg width="16" height="22" viewBox="0 0 16 22" fill="none" aria-hidden="true">
+      <path d="M8 1v18M8 19l5-5M8 19l-5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
 </header>
 
-<main>
+<main id="main-content">
 
   <section class="summary">
     <p>I'm a content designer specializing in high-stakes UX — account access, enforcement, and appeals — where the writing directly affects whether users can regain access to their account.</p>
@@ -138,12 +148,20 @@
 
   <section class="skills">
     <h2>Skills</h2>
-    <p>User Experience Writing · Strategic Communications · HTML · Content Strategy · Conversational AI Design · Information Architecture</p>
+    <ul class="skill-tags">
+      <li>User Experience Writing</li>
+      <li>Strategic Communications</li>
+      <li>HTML</li>
+      <li>Content Strategy</li>
+      <li>Conversational AI Design</li>
+      <li>Information Architecture</li>
+    </ul>
   </section>
 
 </main>
 
 <footer>
+  <p class="footer-sign">Made with <span aria-hidden="true">☕</span> and a few too many em dashes.</p>
   <p>Craig Wen — <a href="mailto:craigwen@gmail.com">craigwen@gmail.com</a> — <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a></p>
 </footer>
 
