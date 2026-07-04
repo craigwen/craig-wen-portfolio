@@ -354,8 +354,16 @@ footer a {
 
 @media (max-width: 480px) {
   body { font-size: 16px; }
-  .hero-doodle { font-size: 1.6rem; top: 6%; right: 8%; }
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .cs-card {
+    grid-template-columns: 1fr;
+  }
+  .cs-card-img {
+    grid-column: 1;
+    grid-row: auto;
+    width: 80px;
+    margin-bottom: 0.9rem;
+  }
 }
 
 /* ---------- Case studies (homepage cards) ---------- */
@@ -372,24 +380,28 @@ footer a {
 }
 
 .cs-card {
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 108px;
+  gap: 0 1.25rem;
+  align-items: start;
   padding: 1.5rem 1.6rem;
   background: var(--paper);
   border: 1.5px solid var(--rule);
   border-radius: 14px;
   text-decoration: none;
   color: inherit;
-  overflow: hidden;
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
 .cs-card-img {
-  display: block;
-  width: calc(100% + 3.2rem);
-  margin: -1.5rem -1.6rem 1.25rem;
-  height: 180px;
+  grid-column: 2;
+  grid-row: 1 / 5;
+  width: 108px;
+  aspect-ratio: 9 / 18;
   object-fit: cover;
-  object-position: top;
+  object-position: center 22%;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
 }
 
 .cs-card:hover {
@@ -400,6 +412,7 @@ footer a {
 
 .cs-card .cs-card-eyebrow {
   display: block;
+  grid-column: 1;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -409,6 +422,7 @@ footer a {
 }
 
 .cs-card h3 {
+  grid-column: 1;
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.3rem;
@@ -417,7 +431,8 @@ footer a {
 }
 
 .cs-card p {
-  margin: 0 0 0.9rem;
+  grid-column: 1;
+  margin: 0;
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.5;
