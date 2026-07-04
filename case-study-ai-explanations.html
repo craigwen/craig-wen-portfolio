@@ -57,8 +57,8 @@
     </ul>
     <p>Two more questions sat underneath all of it: how do we make it obvious the explanation was AI-generated, and how do we even define and measure "success" for a written explanation?</p>
     <div class="cs-figure">
-      <img src="assets/case-studies/cs2-anatomy.png" alt="Annotated mockup of the redesigned removal notice, labeling the AI product branding, the AI disclaimer, the user's flagged content, the AI-generated explanation, and a quick feedback prompt.">
-      <figcaption>Anatomy of the redesigned notice</figcaption>
+      <img src="assets/case-studies/cs2-example-personalized.png" alt="Redesigned removal notice labeled 'Meta AI support assistant,' showing the flagged comment and a personalized explanation: 'We found your comment contains language expressing a wish to cause deadly harm, which goes against our rules on violence and incitement.'">
+      <figcaption>The redesigned notice — labeled as AI, referencing the actual content, and collecting quick feedback</figcaption>
     </div>
   </section>
 
@@ -66,10 +66,7 @@
     <h2>Design decisions</h2>
     <p>I defined a fixed structure every explanation had to follow, capped at 300 characters — enough room to be specific without overwhelming someone who's already upset their post was removed:</p>
     <div class="cs-quote">We found your [description of harm], which goes against [policy name]. Our Community Standards don't allow [description of category].</div>
-    <p>That structure did double duty: it gave the model guardrails, and it gave policy and engineering a consistent pattern to review against. In practice, it produced explanations like this:</p>
-    <div class="cs-figure">
-      <img src="assets/case-studies/cs2-example.png" alt="Example removal notice: 'We found your comment contains language expressing a wish to cause deadly harm, which goes against our rules on violence and incitement. Our Community Standards don't allow language that calls for serious violence, even in a hypothetical way.'">
-    </div>
+    <p>That structure did double duty: it gave the model guardrails, and it gave policy and engineering a consistent pattern to review against.</p>
   </section>
 
   <section class="cs-section">
@@ -86,6 +83,10 @@
   <section class="cs-section">
     <h2>Checking the AI</h2>
     <p>A single bad output here could leak sensitive policy detail or hand a bad actor a workaround — so nothing went out unchecked. I designed a set of automated "judges," each scoring an output against one principle: policy accuracy, specificity, tone, internal-info exposure, and harmful echo (repeating harmful content back to the user). Any output that failed a judge was swapped for a safe fallback string before a person ever saw it.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs2-example-fallback.png" alt="Fallback removal notice with a generic explanation: 'The post may show sexual activity. This goes against our Community Standards on sexual activity. See rule.' No AI labeling or personalized language.">
+      <figcaption>The safe fallback — plain and generic, shown whenever the AI's output didn't pass every judge</figcaption>
+    </div>
   </section>
 
   <section class="cs-section">
