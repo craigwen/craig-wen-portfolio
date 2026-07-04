@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting Click to Pay users to say yes to passkeys — Craig Wen</title>
+<meta name="description" content="Case study: content strategy and workshop facilitation for Mastercard Click to Pay's passkey enrollment flow.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cs-topbar">
+  <div class="cs-topbar-inner">
+    <a class="cs-back" href="index.html">← Craig Wen</a>
+    <p class="cs-eyebrow">Case study · Mastercard, Click to Pay</p>
+    <h1>Getting Click to Pay users to say yes to passkeys</h1>
+    <p class="cs-dek">Passkeys replace passwords with biometrics — but only if people trust and understand them enough to turn one on. I led content strategy for the enrollment, management, and confirmation flows, and ran the workshop that got a cross-functional team talking about the same user, in the same terms.</p>
+    <ul class="cs-meta">
+      <li><strong>My role</strong>End-to-end content strategy, workshop facilitation, UX writing</li>
+      <li><strong>Collaborators</strong>Product design, product management, and engineering partners on Click to Pay</li>
+    </ul>
+  </div>
+</div>
+
+<div class="cs-body">
+
+  <section class="cs-section">
+    <h2>The situation</h2>
+    <p>Click to Pay is Mastercard's digital wallet for online checkout: save your cards once, then check out with them on any site that accepts Click to Pay, without re-entering card details.</p>
+    <div class="cs-figure is-device">
+      <img src="assets/case-studies/cs3-context-checkout.png" alt="Click to Pay checkout screen reading 'Access your Click to Pay cards,' asking the shopper to confirm a code sent by Mastercard.">
+      <figcaption>Click to Pay at checkout, today</figcaption>
+    </div>
+    <p>Passkeys are a newer authentication technology built to replace passwords and one-time codes. They let someone sign in with their fingerprint, face, or device PIN instead — and they're phishing-resistant, so they're safer against data leaks than anything password-based. For Mastercard, that meant less fraud and fewer abandoned carts; for shoppers, a faster, more secure checkout.</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>The ask</h2>
+    <p class="cs-hmw">Design a flow prompting existing Click to Pay users to create a passkey.</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>Discovery</h2>
+    <p>Passkeys were new to most of the team, myself included, so before writing anything I got up to speed: read the documentation, created and used passkeys myself, and reviewed Mastercard's own research. Then I benchmarked how other companies were already introducing them — Google, PayPal, and eBay — against FIDO's own UX guidelines for the technology.</p>
+    <div class="cs-figure">
+      <div class="cs-figure-row">
+        <img src="assets/case-studies/cs3-bench-google.png" alt="Google's passkey prompt: 'Simplify your sign-in — with passkeys you can now use your fingerprint, face, or screen lock to verify it's really you.'">
+        <img src="assets/case-studies/cs3-bench-paypal.png" alt="PayPal's passkey prompt: 'Next time, log in with Touch ID or Face ID.'">
+        <img src="assets/case-studies/cs3-bench-ebay.png" alt="A benchmark passkey prompt: 'With passkeys, you don't need to remember complex passwords.'">
+      </div>
+      <figcaption>How Google, PayPal, and eBay were framing the same moment</figcaption>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>Getting everyone aligned</h2>
+    <p>Product, design, and stakeholders each carried different assumptions about what passkeys were and who they were for. Rather than let that surface mid-review, I ran a workshop to get everyone aligned on the right content, for the right person, at the right time — including an exercise to distill our point of view into a single guiding sentence.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs3-north-star.png" alt="Workshop artifact breaking down the sentence 'Let us give you an easier, safer way to pay' into annotated parts: Let (asks permission, not demanding), Give (FIDO is free and low-effort), Easier (biometrics are more convenient than a one-time code), Safer (biometrics and passkeys protect against fraud and theft), and Pay (plain language, single act).">
+      <figcaption>The north-star sentence exercise — turning scattered assumptions into one shared line</figcaption>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>From workshop to guidelines</h2>
+    <p>The workshop's output started as rough FigJam stickies. From there, I built a journey map to empathize with the user at each moment of the passkey enrollment flow — what they're trying to do, how they likely feel, and where Mastercard has an opportunity to help rather than interrupt.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs3-journey-map.png" alt="Journey map template with four rows: User goal, User action, Quotes and sentiment, and Opportunity (us), each populated with example content for the passkey enrollment moment.">
+      <figcaption>The journey map framework, populated for the enrollment moment</figcaption>
+    </div>
+    <p>I then worked with a research moderator to test directional designs and content against real users, validating or correcting the assumptions baked into those early guidelines. That testing sharpened everything into a small set of content strategy principles:</p>
+    <ul>
+      <li>Speak to the consumer's goals, not Mastercard's.</li>
+      <li>Use the consumer's language, not Mastercard's.</li>
+      <li>Be aware of when you're interrupting the consumer.</li>
+      <li>Prioritize motivating action over providing education.</li>
+      <li>Lean on consumers' existing positive attitudes toward biometrics.</li>
+    </ul>
+    <p>Those principles flexed by context — enrollment, management, and legal content all needed their own version of "do" and "don't":</p>
+    <div class="cs-dodont">
+      <div class="do"><span class="label">Do</span>Highlight the ability to use biometrics as the primary benefit.</div>
+      <div class="dont"><span class="label">Don't</span>Display educational content defining passkeys during checkout.</div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>The work</h2>
+    <p><strong>Passkey enrollment.</strong> Content focuses on how a passkey changes the user's experience, not on the technology itself: the headline leads with biometrics, the description names which biometrics and introduces the word "passkey," and an escape hatch makes clear checkout will continue as usual either way.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs3-passkey-enrollment.png" alt="Passkey enrollment screen: 'Want to use biometrics? Create a passkey to access your cards with face or fingerprint,' with a Create Passkey button and a Continue without passkey link.">
+      <figcaption>"Create a passkey to access your cards with your face or fingerprint."</figcaption>
+    </div>
+    <p><strong>Passkey management.</strong> This screen isn't interrupting a checkout, so it can afford to include the educational detail enrollment deliberately leaves out.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs3-passkey-management.png" alt="Settings and passkey management screens, listing saved passkeys by device with the option to delete them.">
+      <figcaption>Passkey management, in Click to Pay settings</figcaption>
+    </div>
+    <p><strong>Confirmation email.</strong> Reiterates the primary benefit of using a passkey, with the detail that it replaces the one-time verification code.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs3-confirmation-email.png" alt="Confirmation email: 'You added a passkey to Click to Pay. Say hello to biometrics.' with details on the device used and a Manage Settings button.">
+      <figcaption>The confirmation email sent after enrollment</figcaption>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>Challenges</h2>
+    <ul>
+      <li>Couldn't use recognizable branded terms like Face ID or Touch ID, because detecting the user's specific device wasn't technically feasible — so the content had to sell biometrics generically, without borrowing that built-in recognition.</li>
+      <li>No opportunity for large-scale in-product A/B testing, which meant leaning more heavily on qualitative user interviews to validate direction before launch.</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="cs-nextup">
+  <a href="case-study-account-recovery.html">Next case study: Recovering 4.5M blocked accounts a year →</a>
+</div>
+
+<footer>
+  <p class="footer-sign">Made with <span aria-hidden="true">☕</span> and a few too many em dashes.</p>
+  <p>Craig Wen — <a href="mailto:craigwen@gmail.com">craigwen@gmail.com</a> — <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a></p>
+</footer>
+
+</body>
+</html>

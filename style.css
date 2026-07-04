@@ -776,6 +776,41 @@ footer a {
   font-size: 1.3rem;
 }
 
+.cs-dodont {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1.2rem;
+  margin: 1.5rem 0 0;
+}
+
+.cs-dodont > div {
+  padding: 1.3rem 1.4rem;
+  border-radius: 12px;
+  border: 1.5px solid var(--rule);
+}
+
+.cs-dodont .do {
+  background: #fff;
+  border-left: 4px solid #3b7d4f;
+}
+
+.cs-dodont .dont {
+  background: #fff;
+  border-left: 4px solid var(--accent);
+}
+
+.cs-dodont .label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.cs-dodont .do .label { color: #3b7d4f; }
+.cs-dodont .dont .label { color: var(--accent); }
+
 .cs-nextup {
   padding: 2.5rem 1.5rem 4rem;
   border-top: 1px solid var(--rule);
