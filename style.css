@@ -488,7 +488,17 @@ footer a {
   border-radius: 14px;
   text-decoration: none;
   color: inherit;
+  overflow: hidden;
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.cs-card-img {
+  display: block;
+  width: calc(100% + 3.2rem);
+  margin: -1.5rem -1.6rem 1.25rem;
+  height: 180px;
+  object-fit: cover;
+  object-position: top;
 }
 
 .cs-card:hover {
