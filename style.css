@@ -76,8 +76,8 @@ main, footer {
 
 .summary p {
   font-family: var(--serif);
-  font-size: 1.2rem;
-  line-height: 1.55;
+  font-size: 1.5rem;
+  line-height: 1.5;
   margin: 0 0 1.3rem;
 }
 
@@ -139,6 +139,13 @@ section h2::before {
   width: auto;
   max-width: 70%;
   object-fit: contain;
+  filter: grayscale(1) opacity(0.55);
+  transition: filter 0.18s ease;
+}
+
+.company-tile:hover img,
+.company-tile.is-active img {
+  filter: none;
 }
 
 .company-tile .company-mark {
