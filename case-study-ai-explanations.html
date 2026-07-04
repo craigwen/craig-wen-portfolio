@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Designing AI explanations that are helpful, accurate, and safe — Craig Wen</title>
+<meta name="description" content="Case study: designing and safeguarding LLM-generated explanations for content removal decisions at Meta.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cs-topbar">
+  <div class="cs-topbar-inner">
+    <a class="cs-back" href="index.html">← Craig Wen</a>
+    <p class="cs-eyebrow">Case study · Meta, Integrity</p>
+    <h1>Designing dynamic content that's helpful, accurate, and safe</h1>
+    <p class="cs-dek">When Meta removes a post, the explanation used to be generic and left people confused. I designed personalized, LLM-generated explanations — and the guardrails to keep them honest.</p>
+    <ul class="cs-meta">
+      <li><strong>My role</strong>Content strategy, prompt design, AI evaluation criteria</li>
+      <li><strong>Team</strong>Product designer, UX researcher, product manager, 3 engineers</li>
+      <li><strong>Stakeholders</strong>Policy &amp; legal, Facebook product teams, AI product &amp; brand teams</li>
+    </ul>
+  </div>
+</div>
+
+<div class="cs-body">
+
+  <section class="cs-section">
+    <h2>The situation</h2>
+    <p>When a post breaks Meta's Community Standards, it gets removed and the person who posted it is notified. They can appeal if they think it was a mistake.</p>
+    <div class="cs-flow">
+      <div class="cs-flow-step"><span class="n">1</span><span>User posts</span></div>
+      <span class="cs-flow-arrow" aria-hidden="true">→</span>
+      <div class="cs-flow-step"><span class="n">2</span><span>Post removed</span></div>
+      <span class="cs-flow-arrow" aria-hidden="true">→</span>
+      <div class="cs-flow-step"><span class="n">3</span><span>User notified</span></div>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>The problem</h2>
+    <p>The notification's explanation was templated and vague. People didn't understand what specifically was wrong with their content, and confusion curdled into something worse: they stopped trusting that Meta's systems — or its decisions — were fair.</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>The goal</h2>
+    <p class="cs-hmw"><b>How might we</b> specify what was wrong with the content, <b>so that</b> users understand why their content was removed?</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>The approach</h2>
+    <p>The answer was to generate a personalized explanation for every removal using an LLM, referencing the actual content and the actual policy it broke. But a personalized, AI-written explanation is only safe to ship if it holds up against three competing needs at once:</p>
+    <ul>
+      <li><strong>Specific and personal</strong> — actually helpful, not another generic template.</li>
+      <li><strong>Accurate and safe</strong> — doesn't invent a policy, and isn't harmful in its own right.</li>
+      <li><strong>Doesn't coach bad actors</strong> — never reveals how to word around detection.</li>
+    </ul>
+    <p>Two more questions sat underneath all of it: how do we make it obvious the explanation was AI-generated, and how do we even define and measure "success" for a written explanation?</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs2-anatomy.png" alt="Annotated mockup of the redesigned removal notice, labeling the AI product branding, the AI disclaimer, the user's flagged content, the AI-generated explanation, and a quick feedback prompt.">
+      <figcaption>Anatomy of the redesigned notice</figcaption>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>Design decisions</h2>
+    <p>I defined a fixed structure every explanation had to follow, capped at 300 characters — enough room to be specific without overwhelming someone who's already upset their post was removed:</p>
+    <div class="cs-quote">We found your [description of harm], which goes against [policy name]. Our Community Standards don't allow [description of category].</div>
+    <p>That structure did double duty: it gave the model guardrails, and it gave policy and engineering a consistent pattern to review against. In practice, it produced explanations like this:</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs2-example.png" alt="Example removal notice: 'We found your comment contains language expressing a wish to cause deadly harm, which goes against our rules on violence and incitement. Our Community Standards don't allow language that calls for serious violence, even in a hypothetical way.'">
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>Instructing the AI</h2>
+    <p>I wrote the system prompt that governed the model's tone and voice, its terminology, which policy sources it was allowed to ground answers in, the output structure above, and exactly when it should fall back to a generic string instead of generating a response at all.</p>
+    <p>To get buy-in from policy, legal, and brand stakeholders — each with reason to be nervous about an LLM writing enforcement language — I distilled the instructions into three principles they could sign off on directly:</p>
+    <ul>
+      <li><strong>Clarity</strong> — follow the style guide, using our support voice and approved terms.</li>
+      <li><strong>Accuracy</strong> — reference only specific, approved policy sources, never an invented one.</li>
+      <li><strong>Manage risk</strong> — follow a transparency framework so sensitive enforcement detail stays protected from people trying to game it.</li>
+    </ul>
+  </section>
+
+  <section class="cs-section">
+    <h2>Checking the AI</h2>
+    <p>A single bad output here could leak sensitive policy detail or hand a bad actor a workaround — so nothing went out unchecked. I designed a set of automated "judges," each scoring an output against one principle: policy accuracy, specificity, tone, internal-info exposure, and harmful echo (repeating harmful content back to the user). Any output that failed a judge was swapped for a safe fallback string before a person ever saw it.</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>Results</h2>
+    <div class="cs-stats">
+      <div class="cs-stat"><span class="num">0</span><span class="label">regressions to Facebook's core content and usage metrics</span></div>
+      <div class="cs-stat"><span class="num">Neutral</span><span class="label">effect on appeal volume</span></div>
+      <div class="cs-stat"><span class="num">60%</span><span class="label">positive user sentiment on the new explanations</span></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="cs-nextup">
+  <a href="case-study-account-recovery.html">Next case study: Recovering 4.5M blocked accounts a year →</a>
+</div>
+
+<footer>
+  <p class="footer-sign">Made with <span aria-hidden="true">☕</span> and a few too many em dashes.</p>
+  <p>Craig Wen — <a href="mailto:craigwen@gmail.com">craigwen@gmail.com</a> — <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a></p>
+</footer>
+
+</body>
+</html>

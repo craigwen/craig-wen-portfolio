@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recovering 4.5M blocked accounts a year — Craig Wen</title>
+<meta name="description" content="Case study: reframing an account verification flow at Meta, recovering 4.5 million real users a year with no regressions.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cs-topbar">
+  <div class="cs-topbar-inner">
+    <a class="cs-back" href="index.html">← Craig Wen</a>
+    <p class="cs-eyebrow">Case study · Meta, Integrity</p>
+    <h1>Turning an account block into a quick task, not a punishment</h1>
+    <p class="cs-dek">Meta's anti-bot systems occasionally disable real people's accounts by mistake. Rewriting the notice and verification flow that let them back in recovered 4.5 million legitimate users a year.</p>
+    <ul class="cs-meta">
+      <li><strong>My role</strong>End-to-end content strategy and UX writing</li>
+      <li><strong>Team</strong>Product designer, UX researcher, product manager, 2 engineers</li>
+      <li><strong>Stakeholders</strong>Policy &amp; legal, anti-bot team, growth team</li>
+    </ul>
+  </div>
+</div>
+
+<div class="cs-body">
+
+  <section class="cs-section">
+    <h2>The situation</h2>
+    <p>Meta disables millions of bot accounts every day, and most of them are caught at registration, before an account ever does anything. A small share of those disabled accounts belong to real people who got flagged by mistake. They can get back in by completing an identity-verification flow, but first they have to see a notice telling them their new account was disabled, and decide to act on it.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs1-notice-before.png" alt="Original notice screen reading &quot;We suspended your account&quot; with dense legal-style copy explaining what this means, what you can do, and why this happened, ending in an &quot;Appeal&quot; button.">
+      <figcaption>The original notice screen</figcaption>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>The problem</h2>
+    <p>10–20% of real users dropped off right here and never started an appeal — thousands of people locked out of the accounts they'd just created, every single day. Looking at the screen, it wasn't hard to see why:</p>
+    <ul>
+      <li>It read like a punishment, even though the person had just signed up and done nothing wrong.</li>
+      <li>It packed in dense, unfamiliar policy language before asking for anything.</li>
+      <li>The only way forward was a button labeled <strong>"Appeal"</strong> — a legal term that sounds far more serious than the 60-second verification it actually led to.</li>
+    </ul>
+  </section>
+
+  <section class="cs-section">
+    <h2>The goal</h2>
+    <p class="cs-hmw"><b>How might we</b> nudge users to start an appeal, <b>so that</b> users can quickly use their new accounts?</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>What I did</h2>
+    <p>I overhauled the content strategy for the flow, reframing it from an enforcement notice into a standard identity-confirmation task. Removing the enforcement framing meant stripping out anything that cast the moment as an accusation, replacing the intimidating "Appeal" CTA with plain, forward-moving language, and rebuilding the verification steps around a single, calm idea: <em>confirm who you are.</em></p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs1-mental-model-table.png" alt="Table comparing the user's mental model, emotional state, and perceived effort before and after the redesign. Before: 'I'm accused of something,' defensive and confused, high effort. After: 'I just need to confirm who I am,' neutral and task-oriented, low effort.">
+      <figcaption>The shift I was designing for</figcaption>
+    </div>
+    <p>One thing that made this possible: Meta is required to tell users what happened, why, and what they can do for account enforcements — but I confirmed with policy and legal that requirement doesn't apply to bot enforcements. That gave me room to simplify the screen down to what people actually needed.</p>
+    <div class="cs-figure">
+      <img src="assets/case-studies/cs1-confirm-after.png" alt="Redesigned screen reading 'Confirm you're human to use your account' with a single Continue button, replacing the punitive suspension notice.">
+      <figcaption>The redesigned screen — task-first, not enforcement-first</figcaption>
+    </div>
+    <p>From there, users move through a short verification flow: a captcha, SMS confirmation, a selfie check, a submission screen, and an outcome.</p>
+    <div class="cs-figure is-wide">
+      <img src="assets/case-studies/cs1-appeal-flow.png" alt="Five-screen appeal flow: Captcha, SMS, Selfie, Submitted, and Outcome, each using calm, task-oriented language.">
+      <figcaption>The verification flow, rewritten step by step</figcaption>
+    </div>
+  </section>
+
+  <section class="cs-section">
+    <h2>Results</h2>
+    <div class="cs-stats">
+      <div class="cs-stat"><span class="num">4.5M</span><span class="label">real users recovered annually across Instagram and Facebook</span></div>
+      <div class="cs-stat"><span class="num">0</span><span class="label">regressions to safety or anti-bot metrics</span></div>
+    </div>
+    <p style="margin-top:1.4rem;">Beyond the numbers, the project made the case — with data — for how much leverage content strategy alone has in a flow like this, and opened the door to further investment.</p>
+  </section>
+
+  <section class="cs-section">
+    <h2>Next steps</h2>
+    <ul>
+      <li>Extend the same content strategy to the other touchpoints in the flow.</li>
+      <li>Scale the approach to other enforcement types, while still meeting regulatory requirements.</li>
+      <li>Keep optimizing the notice screen itself — still the single biggest lever in the flow.</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="cs-nextup">
+  <a href="case-study-ai-explanations.html">Next case study: Designing AI explanations that are helpful, accurate, and safe →</a>
+</div>
+
+<footer>
+  <p class="footer-sign">Made with <span aria-hidden="true">☕</span> and a few too many em dashes.</p>
+  <p>Craig Wen — <a href="mailto:craigwen@gmail.com">craigwen@gmail.com</a> — <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a></p>
+</footer>
+
+</body>
+</html>
