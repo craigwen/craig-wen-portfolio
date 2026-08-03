@@ -89,42 +89,6 @@ main, footer {
   gap: 0.9rem;
 }
 
-/* ---------- Scroll-progress coffee ---------- */
-
-.brew {
-  --fill: 0;
-  display: inline-flex;
-  width: 22px;
-  height: 20px;
-  cursor: default;
-}
-
-.brew svg {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.brew-cup,
-.brew-handle {
-  fill: none;
-  stroke: var(--muted);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  transition: stroke 0.3s ease;
-}
-
-.brew-liquid {
-  fill: #6f4020;
-  transform: translateY(calc((1 - var(--fill)) * 13.5px));
-  transition: transform 0.12s linear;
-}
-
-.brew.is-full .brew-cup,
-.brew.is-full .brew-handle {
-  stroke: var(--hero-bg);
-}
-
 .site-nav a {
   color: var(--muted);
   text-decoration: none;
@@ -425,7 +389,15 @@ footer {
   margin: 0 0 0.6rem;
 }
 
-/* ---------- Blinking caret after the name ---------- */
+/* ---------- Typed role + caret after the name ---------- */
+
+.site-role {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.005em;
+}
 
 .caret {
   display: inline-block;
@@ -435,6 +407,12 @@ footer {
   background: var(--hero-bg);
   vertical-align: -0.12em;
   animation: blink 1.15s step-end infinite;
+}
+
+/* Hold the caret solid while keys are "being pressed". */
+.caret.is-typing {
+  animation: none;
+  opacity: 1;
 }
 
 @keyframes blink {
@@ -983,6 +961,5 @@ footer a {
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
   .cs-topbar { animation: none; }
-  .brew-liquid { transition: none; }
   .stat::after { transition: opacity 0.15s ease; }
 }

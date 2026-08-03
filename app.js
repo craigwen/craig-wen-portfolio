@@ -56,47 +56,54 @@ document.querySelectorAll(".copy-email").forEach((link) => {
     });
 });
 
-/* ---------- Coffee cup that fills as you read ---------- */
+/* ---------- Typewriter roles after the name ---------- */
 
-const brew = document.getElementById("brew");
+const typed = document.getElementById("typed");
+const caret = document.getElementById("caret");
 
-if (brew) {
-    // The cup body is reused as both the outline and the clip for the liquid.
-    const cup = "M4 7.5 h12 v7.5 a6 6 0 0 1 -6 6 h0 a6 6 0 0 1 -6 -6 z";
+if (typed && caret) {
+    const roles = ["content designer", "content strategist", "model designer"];
 
-    // The clip lives on an untransformed <g>: a transform on the liquid itself
-    // would drag its clip along with it and the fill would escape the cup.
-    brew.innerHTML = `
-        <svg viewBox="0 0 26 24" aria-hidden="true">
-          <defs><clipPath id="brewClip"><path d="${cup}" /></clipPath></defs>
-          <g clip-path="url(#brewClip)">
-            <rect class="brew-liquid" x="4" y="7.5" width="12" height="13.5" />
-          </g>
-          <path class="brew-cup" d="${cup}" />
-          <path class="brew-handle" d="M16.5 10 a3.5 3.5 0 0 1 0 7" />
-        </svg>`;
+    const TYPE = 68; // per character, plus jitter
+    const DELETE = 30; // deleting reads faster than typing
+    const HOLD = 10000; // time spent showing a finished role
+    const BETWEEN = 450; // beat after clearing, before the next role
 
-    let ticking = false;
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    // A real cursor holds steady while keys are being pressed.
+    const setTyping = (on) => caret.classList.toggle("is-typing", on);
 
-    const updateBrew = () => {
-        const max = document.documentElement.scrollHeight - innerHeight;
-        const progress = max > 0 ? Math.min(scrollY / max, 1) : 1;
-        brew.style.setProperty("--fill", progress.toFixed(3));
-        brew.classList.toggle("is-full", progress > 0.995);
-        ticking = false;
-    };
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)");
 
-    addEventListener(
-        "scroll",
-        () => {
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(updateBrew);
+    async function run() {
+        let i = 0;
+        while (true) {
+            const role = ", " + roles[i % roles.length];
+
+            setTyping(true);
+            for (let c = 1; c <= role.length; c++) {
+                typed.textContent = role.slice(0, c);
+                await wait(TYPE + Math.random() * 55);
             }
-        },
-        { passive: true },
-    );
+            setTyping(false);
 
-    addEventListener("resize", updateBrew, { passive: true });
-    updateBrew();
+            await wait(HOLD);
+
+            setTyping(true);
+            for (let c = role.length; c >= 0; c--) {
+                typed.textContent = role.slice(0, c);
+                await wait(DELETE);
+            }
+            setTyping(false);
+
+            await wait(BETWEEN);
+            i++;
+        }
+    }
+
+    if (reduced.matches) {
+        typed.textContent = ", " + roles[0];
+    } else {
+        run();
+    }
 }
