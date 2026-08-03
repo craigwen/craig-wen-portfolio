@@ -1,221 +1,465 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Craig Wen — Content Designer</title>
-<meta name="description" content="Craig Wen — Content Designer at Meta. UX writing, conversational AI, content strategy.">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Craig Wen — Content Designer</title>
+        <meta
+            name="description"
+            content="Craig Wen — Content Designer at Meta. UX writing, conversational AI, content strategy."
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="site-header-inner">
+                <span class="site-name"
+                    >Craig Wen<span class="caret" aria-hidden="true"></span
+                ></span>
+                <nav class="site-nav">
+                    <a href="https://www.linkedin.com/in/craig-wen/"
+                        >LinkedIn</a
+                    >
+                </nav>
+            </div>
+        </header>
 
-<header class="site-header">
-  <div class="site-header-inner">
-    <span class="site-name">Craig Wen</span>
-    <nav class="site-nav">
-      <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>
-    </nav>
-  </div>
-</header>
+        <main id="main-content">
+            <section class="summary">
+                <p>
+                    I write for the hard moments in an app: the locked account,
+                    the verification step, the screen that makes someone give
+                    up. I'm currently at Meta.
+                </p>
+            </section>
 
-<main id="main-content">
+            <section class="case-studies">
+                <h2>Case studies</h2>
+                <div class="cs-cards">
+                    <a class="cs-card" href="case-study-account-recovery.html">
+                        <img
+                            src="assets/case-studies/cs1-confirm-after.png"
+                            alt=""
+                            class="cs-card-img"
+                        />
+                        <span class="cs-card-eyebrow">Meta</span>
+                        <h3>
+                            Turning an account block into a quick task, not a
+                            punishment
+                        </h3>
+                        <p>
+                            <span
+                                class="stat"
+                                data-note="Roughly the population of Ireland."
+                                >4.5 million people</span
+                            >
+                            got locked out of accounts they'd just created,
+                            mistakenly flagged by anti-bot systems. Rewriting and redesigning the notice screen
+                            fixed most of it.
+                        </p>
+                    </a>
+                    <a class="cs-card" href="case-study-ai-explanations.html">
+                        <img
+                            src="assets/case-studies/cs2-example-personalized.png"
+                            alt=""
+                            class="cs-card-img"
+                        />
+                        <span class="cs-card-eyebrow">Meta</span>
+                        <h3>
+                            Writing AI-generated explanations people can
+                            actually trust
+                        </h3>
+                        <p>
+                            When Meta removes your content, you get a
+                            personalized explanation written by an LLM. Getting
+                            it accurate, fair, and legally sound meant building
+                            the prompt architecture and evaluation guardrails
+                            from scratch.
+                        </p>
+                    </a>
+                    <a class="cs-card" href="case-study-passkeys.html">
+                        <img
+                            src="assets/case-studies/cs3-passkey-enrollment.png"
+                            alt=""
+                            class="cs-card-img"
+                        />
+                        <span class="cs-card-eyebrow">Mastercard</span>
+                        <h3>
+                            Getting Click to Pay users to say yes to passkeys
+                        </h3>
+                        <p>
+                            Passkeys are unfamiliar, and most users say no
+                            without knowing why. I ran the workshop that got the
+                            team aligned, then wrote an enrollment flow designed
+                            to earn the yes.
+                        </p>
+                    </a>
+                </div>
+            </section>
 
-  <section class="summary">
-    <p>I write for the hard moments in an app: the locked account, the failed appeal, the screen that makes someone give up. Currently at Meta in London, doing exactly that.</p>
-  </section>
+            <section class="experience">
+                <h2>Experience</h2>
 
-  <section class="case-studies">
-    <h2>Case studies</h2>
-    <div class="cs-cards">
-      <a class="cs-card" href="case-study-account-recovery.html">
-        <img src="assets/case-studies/cs1-confirm-after.png" alt="" class="cs-card-img" />
-        <span class="cs-card-eyebrow">Meta</span>
-        <h3>Turning an account block into a quick task, not a punishment</h3>
-        <p>4.5 million people got locked out of accounts they'd just created, flagged by mistake by anti-bot systems. Rewriting and redesigning the notice screen fixed most of it.</p>
-      </a>
-      <a class="cs-card" href="case-study-ai-explanations.html">
-        <img src="assets/case-studies/cs2-example-personalized.png" alt="" class="cs-card-img" />
-        <span class="cs-card-eyebrow">Meta</span>
-        <h3>Writing AI-generated explanations people can actually trust</h3>
-        <p>When Meta removes your content, you get a personalized explanation written by an LLM. Getting it accurate, fair, and legally sound meant building the prompt architecture and evaluation guardrails from scratch.</p>
-      </a>
-      <a class="cs-card" href="case-study-passkeys.html">
-        <img src="assets/case-studies/cs3-passkey-enrollment.png" alt="" class="cs-card-img" />
-        <span class="cs-card-eyebrow">Mastercard</span>
-        <h3>Getting Click to Pay users to say yes to passkeys</h3>
-        <p>Passkeys are unfamiliar, and most users say no without knowing why. I ran the workshop that got the team aligned, then wrote an enrollment flow designed to earn the yes.</p>
-      </a>
-    </div>
-  </section>
+                <div
+                    class="logo-grid"
+                    role="tablist"
+                    aria-label="Companies I've worked at"
+                >
+                    <button
+                        class="company-tile"
+                        data-target="job-meta"
+                        aria-expanded="false"
+                        aria-controls="job-meta"
+                    >
+                        <img src="assets/logos/meta.svg" alt="" />
+                        <span class="company-name">Meta</span>
+                    </button>
+                    <button
+                        class="company-tile"
+                        data-target="job-mastercard"
+                        aria-expanded="false"
+                        aria-controls="job-mastercard"
+                    >
+                        <img src="assets/logos/mastercard.svg" alt="" />
+                        <span class="company-name">Mastercard</span>
+                    </button>
+                    <button
+                        class="company-tile"
+                        data-target="job-collegeboard"
+                        aria-expanded="false"
+                        aria-controls="job-collegeboard"
+                    >
+                        <img src="assets/logos/collegeboard.png" alt="" />
+                        <span class="company-name">College Board</span>
+                    </button>
+                    <button
+                        class="company-tile"
+                        data-target="job-ea"
+                        aria-expanded="false"
+                        aria-controls="job-ea"
+                    >
+                        <img src="assets/logos/ea.svg" alt="" />
+                        <span class="company-name">Electronic Arts</span>
+                    </button>
+                    <button
+                        class="company-tile"
+                        data-target="job-huge"
+                        aria-expanded="false"
+                        aria-controls="job-huge"
+                    >
+                        <img src="assets/logos/huge.png" alt="" />
+                        <span class="company-name">Huge</span>
+                    </button>
+                    <button
+                        class="company-tile"
+                        data-target="job-columbia"
+                        aria-expanded="false"
+                        aria-controls="job-columbia"
+                    >
+                        <img src="assets/logos/columbia.png" alt="" />
+                        <span class="company-name">Columbia University</span>
+                    </button>
+                </div>
 
-  <section class="experience">
-    <h2>Experience</h2>
+                <div class="job-details">
+                    <article class="job" id="job-meta" hidden>
+                        <div class="job-head">
+                            <div class="job-identity">
+                                <img
+                                    src="assets/logos/meta.svg"
+                                    alt=""
+                                    class="job-logo"
+                                    aria-hidden="true"
+                                />
+                                <h3>Meta</h3>
+                            </div>
+                            <span class="dates">May 2024 — Present</span>
+                        </div>
+                        <p class="title">Content Designer · London</p>
+                        <ul>
+                            <li>
+                                Own content design end-to-end for Meta's
+                                enforcement and appeals surfaces — notice
+                                screens, verification flows, and AI-generated
+                                explanations reaching hundreds of millions of
+                                accounts. Two of these redesigns are detailed in
+                                the case studies above.
+                            </li>
+                            <li>
+                                Vibe code high-fidelity prototypes and ship
+                                production code changes directly, using
+                                AI-assisted development.
+                            </li>
+                            <li>
+                                Lead AI tool adoption across the org for 35
+                                content designers, improving the percentage of
+                                CDs who ship code changes from
+                                <span
+                                    class="stat"
+                                    data-note="From 6 people to 34, in about 12 weeks."
+                                    >17% → 96%</span
+                                >
+                                in one quarter.
+                            </li>
+                        </ul>
+                        <p class="words-matter">
+                            Enforcement language tends to assume guilt. Write for
+                            the innocent person caught in the system, and the
+                            guilty ones still understand — but you recover
+                            millions more.
+                        </p>
+                    </article>
 
-    <div class="logo-grid" role="tablist" aria-label="Companies I've worked at">
-      <button class="company-tile" data-target="job-meta" aria-expanded="false" aria-controls="job-meta">
-        <img src="assets/logos/meta.svg" alt="" />
-        <span class="company-name">Meta</span>
-      </button>
-      <button class="company-tile" data-target="job-mastercard" aria-expanded="false" aria-controls="job-mastercard">
-        <img src="assets/logos/mastercard.svg" alt="" />
-        <span class="company-name">Mastercard</span>
-      </button>
-      <button class="company-tile" data-target="job-collegeboard" aria-expanded="false" aria-controls="job-collegeboard">
-        <img src="assets/logos/collegeboard.png" alt="" />
-        <span class="company-name">College Board</span>
-      </button>
-      <button class="company-tile" data-target="job-ea" aria-expanded="false" aria-controls="job-ea">
-        <img src="assets/logos/ea.svg" alt="" />
-        <span class="company-name">Electronic Arts</span>
-      </button>
-      <button class="company-tile" data-target="job-huge" aria-expanded="false" aria-controls="job-huge">
-        <img src="assets/logos/huge.png" alt="" />
-        <span class="company-name">Huge</span>
-      </button>
-      <button class="company-tile" data-target="job-columbia" aria-expanded="false" aria-controls="job-columbia">
-        <img src="assets/logos/columbia.png" alt="" />
-        <span class="company-name">Columbia University</span>
-      </button>
-    </div>
+                    <article class="job" id="job-mastercard" hidden>
+                        <div class="job-head">
+                            <div class="job-identity">
+                                <img
+                                    src="assets/logos/mastercard.svg"
+                                    alt=""
+                                    class="job-logo"
+                                    aria-hidden="true"
+                                />
+                                <h3>Mastercard</h3>
+                            </div>
+                            <span class="dates">Nov 2022 — Dec 2023</span>
+                        </div>
+                        <p class="title">Lead Content Designer · New York</p>
+                        <ul>
+                            <li>
+                                Led content design across products and platforms
+                                at a global payments network: onboarding,
+                                customer support flows, and system settings.
+                            </li>
+                            <li>
+                                Defined content principles and patterns in the
+                                design system.
+                            </li>
+                            <li>
+                                Spearheaded content-first projects from vision
+                                through delivery, conducting user research to
+                                test and validate frameworks along the way.
+                            </li>
+                        </ul>
+                        <p class="words-matter">
+                            A button label isn't decoration. At a global payments
+                            network, one word choice multiplies across millions
+                            of interactions before anyone notices it's wrong.
+                        </p>
+                    </article>
 
-    <div class="job-details">
+                    <article class="job earlier" id="job-collegeboard" hidden>
+                        <div class="job-head">
+                            <div class="job-identity">
+                                <img
+                                    src="assets/logos/collegeboard.png"
+                                    alt=""
+                                    class="job-logo"
+                                    aria-hidden="true"
+                                />
+                                <h3>The College Board</h3>
+                            </div>
+                            <span class="dates">Dec 2019 — Nov 2022</span>
+                        </div>
+                        <p class="title">Content Strategy Lead</p>
+                        <p class="job-summary">
+                            Directed content strategy and information
+                            architecture for College Search and Scholarship
+                            Search, high-traffic products used by millions of
+                            students annually.
+                        </p>
+                        <p class="words-matter">
+                            When your users are 17-year-olds making one of the
+                            biggest decisions of their lives, vague copy isn't
+                            neutral — it's an obstacle.
+                        </p>
+                    </article>
 
-      <article class="job" id="job-meta" hidden>
-        <div class="job-head">
-          <div class="job-identity">
-            <img src="assets/logos/meta.svg" alt="" class="job-logo" aria-hidden="true" />
-            <h3>Meta</h3>
-          </div>
-          <span class="dates">May 2024 — Present</span>
-        </div>
-        <p class="title">Content Designer · London</p>
-        <ul>
-          <li>Redesigned content strategy for enforcement language from punitive to precautionary, recovering 4.4 million legitimate users per year and reducing incorrectly impacted users by 50% in the US and Canada.</li>
-          <li>Designed and launched a conversational AI assistant for appeals: prompt architecture and LLM quality judges to evaluate conversations.</li>
-          <li>Own content end-to-end, including vibe coding high-fidelity prototypes and shipping production code changes with AI-assisted development.</li>
-          <li>Lead AI tool adoption across the org for 35 content designers, improving the percentage of CDs who ship code changes from 17% → 96% in one quarter.</li>
-        </ul>
-      </article>
+                    <article class="job earlier" id="job-ea" hidden>
+                        <div class="job-head">
+                            <div class="job-identity">
+                                <img
+                                    src="assets/logos/ea.svg"
+                                    alt=""
+                                    class="job-logo"
+                                    aria-hidden="true"
+                                />
+                                <h3>Electronic Arts</h3>
+                            </div>
+                            <span class="dates">2021 — 2022</span>
+                        </div>
+                        <p class="title">Content Strategist</p>
+                        <p class="job-summary">
+                            Established content strategy and information
+                            architecture for an interactive timeline spanning
+                            <span
+                                class="stat"
+                                data-note="Four decades of releases, from Pong-era to present."
+                                >10,000+ video games</span
+                            >
+                            — honorable mention, Fast Company's Innovation by
+                            Design awards.
+                        </p>
+                        <p class="words-matter">
+                            Taxonomy is storytelling. How you label 10,000 things
+                            decides whether people see a chaotic archive or a
+                            coherent history.
+                        </p>
+                    </article>
 
-      <article class="job" id="job-mastercard" hidden>
-        <div class="job-head">
-          <div class="job-identity">
-            <img src="assets/logos/mastercard.svg" alt="" class="job-logo" aria-hidden="true" />
-            <h3>Mastercard</h3>
-          </div>
-          <span class="dates">Nov 2022 — Dec 2023</span>
-        </div>
-        <p class="title">Lead Content Designer · New York</p>
-        <ul>
-          <li>Led content design across products and platforms at a global payments network: onboarding, customer support flows, and system settings.</li>
-          <li>Defined content principles and patterns in the design system.</li>
-          <li>Spearheaded content-first projects from vision through delivery, conducting user research to test and validate frameworks along the way.</li>
-        </ul>
-      </article>
+                    <article class="job earlier" id="job-huge" hidden>
+                        <div class="job-head">
+                            <div class="job-identity">
+                                <img
+                                    src="assets/logos/huge.png"
+                                    alt=""
+                                    class="job-logo"
+                                    aria-hidden="true"
+                                />
+                                <h3>Huge</h3>
+                            </div>
+                            <span class="dates">Jun 2017 — Dec 2019</span>
+                        </div>
+                        <p class="title">Content Strategist · Brooklyn</p>
+                        <p class="job-summary">
+                            Drove content strategy, UI copy, and information
+                            architecture for major clients including Google,
+                            Chase, and Merck.
+                        </p>
+                        <p class="words-matter">
+                            Agency work taught me to write rationale as clearly
+                            as I write copy. If you can't defend a word, someone
+                            will replace it with a worse one.
+                        </p>
+                    </article>
 
-      <article class="job" id="job-collegeboard" hidden>
-        <div class="job-head">
-          <div class="job-identity">
-            <img src="assets/logos/collegeboard.png" alt="" class="job-logo" aria-hidden="true" />
-            <h3>The College Board</h3>
-          </div>
-          <span class="dates">Dec 2019 — Nov 2022</span>
-        </div>
-        <p class="title">Content Strategy Lead</p>
-        <ul>
-          <li>Directed content strategy for College Search and Scholarship Search, high-traffic products used by millions of students annually.</li>
-          <li>Established the information architecture for search filters, results, and college profiles.</li>
-          <li>Partnered with product, UX, and research teams in an Agile environment.</li>
-        </ul>
-      </article>
+                    <article class="job earlier" id="job-columbia" hidden>
+                        <div class="job-head">
+                            <div class="job-identity">
+                                <img
+                                    src="assets/logos/columbia.png"
+                                    alt=""
+                                    class="job-logo"
+                                    aria-hidden="true"
+                                />
+                                <h3>Columbia University</h3>
+                            </div>
+                            <span class="dates">Jun 2013 — Jun 2017</span>
+                        </div>
+                        <p class="title">
+                            Content Strategist, then Web Producer · New York
+                        </p>
+                        <p class="job-summary">
+                            Led content strategy for University websites,
+                            including a templating platform and CMS standard
+                            that has launched 50+ sites since 2016.
+                        </p>
+                        <p class="words-matter">
+                            University copy is a translation problem — academic
+                            precision into human clarity, without losing either.
+                            The hardest sentence is the one that's both.
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </main>
 
-      <article class="job" id="job-ea" hidden>
-        <div class="job-head">
-          <div class="job-identity">
-            <img src="assets/logos/ea.svg" alt="" class="job-logo" aria-hidden="true" />
-            <h3>Electronic Arts</h3>
-          </div>
-          <span class="dates">2021 — 2022</span>
-        </div>
-        <p class="title">Content Strategist</p>
-        <ul>
-          <li>Established content strategy and information architecture for an interactive timeline spanning 10,000+ video games and company milestones.</li>
-          <li>Honorable mention, Fast Company's Innovation by Design awards, Experience Design category.</li>
-        </ul>
-      </article>
+        <footer>
+            <p class="footer-sign">
+                Made with
+                <span class="cup" id="cup" aria-hidden="true">☕</span> and a few
+                too many em dashes.
+            </p>
+            <p>
+                Craig Wen —
+                <a
+                    href="mailto:craigwen@gmail.com"
+                    class="copy-email"
+                    data-email="craigwen@gmail.com"
+                    >craigwen@gmail.com</a
+                >
+                —
+                <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>
+            </p>
+        </footer>
 
-      <article class="job" id="job-huge" hidden>
-        <div class="job-head">
-          <div class="job-identity">
-            <img src="assets/logos/huge.png" alt="" class="job-logo" aria-hidden="true" />
-            <h3>Huge</h3>
-          </div>
-          <span class="dates">Jun 2017 — Dec 2019</span>
-        </div>
-        <p class="title">Content Strategist · Brooklyn</p>
-        <ul>
-          <li>Drove content strategy for major clients including Google, Chase, and Merck.</li>
-          <li>Created UI copy, information architectures, taxonomies, and CMS documentation.</li>
-          <li>Led client workshops and presentations to align on strategy and deliverables.</li>
-        </ul>
-      </article>
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-      <article class="job" id="job-columbia" hidden>
-        <div class="job-head">
-          <div class="job-identity">
-            <img src="assets/logos/columbia.png" alt="" class="job-logo" aria-hidden="true" />
-            <h3>Columbia University</h3>
-          </div>
-          <span class="dates">Jun 2013 — Jun 2017</span>
-        </div>
-        <p class="title">Content Strategist, then Web Producer · New York</p>
-        <ul>
-          <li>Led content strategy for University websites and digital initiatives; ran workshops on content strategy, writing for the web, IA, SEO, and accessibility.</li>
-          <li>Created a website templating platform and CMS standard that has launched 50+ sites since 2016.</li>
-          <li>Led the visual redesign of the Columbia News site, reducing bounce rates.</li>
-        </ul>
-      </article>
+        <script>
+            const tiles = document.querySelectorAll(".company-tile");
+            const placeholder = document.querySelector(".job-placeholder");
 
+            tiles.forEach((tile) => {
+                tile.addEventListener("click", () => {
+                    const targetId = tile.dataset.target;
+                    const target = document.getElementById(targetId);
+                    const isOpen =
+                        tile.getAttribute("aria-expanded") === "true";
 
-    </div>
-  </section>
+                    tiles.forEach((t) => {
+                        t.setAttribute("aria-expanded", "false");
+                        t.classList.remove("is-active");
+                    });
+                    document.querySelectorAll(".job").forEach((job) => {
+                        job.hidden = true;
+                    });
+                    if (placeholder) placeholder.hidden = true;
 
+                    if (!isOpen) {
+                        tile.setAttribute("aria-expanded", "true");
+                        tile.classList.add("is-active");
+                        target.hidden = false;
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "nearest",
+                        });
+                    } else if (placeholder) {
+                        placeholder.hidden = false;
+                    }
+                });
+            });
 
-</main>
+            const toast = document.getElementById("toast");
+            let toastTimer;
 
-<footer>
-  <p class="footer-sign">Made with <span aria-hidden="true">☕</span> and a few too many em dashes.</p>
-  <p>Craig Wen — <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a></p>
-</footer>
+            document.querySelectorAll(".copy-email").forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    if (!navigator.clipboard) return;
+                    e.preventDefault();
+                    navigator.clipboard
+                        .writeText(link.dataset.email)
+                        .then(() => {
+                            toast.textContent = "Copied — say hello anytime";
+                            toast.classList.add("is-visible");
+                            clearTimeout(toastTimer);
+                            toastTimer = setTimeout(() => {
+                                toast.classList.remove("is-visible");
+                            }, 2200);
+                        })
+                        .catch(() => {
+                            window.location.href = link.href;
+                        });
+                });
+            });
 
-<script>
-  const tiles = document.querySelectorAll('.company-tile');
-  const placeholder = document.querySelector('.job-placeholder');
+            const cup = document.getElementById("cup");
+            let cupFull = false;
 
-  tiles.forEach((tile) => {
-    tile.addEventListener('click', () => {
-      const targetId = tile.dataset.target;
-      const target = document.getElementById(targetId);
-      const isOpen = tile.getAttribute('aria-expanded') === 'true';
-
-      tiles.forEach((t) => {
-        t.setAttribute('aria-expanded', 'false');
-        t.classList.remove('is-active');
-      });
-      document.querySelectorAll('.job').forEach((job) => { job.hidden = true; });
-      if (placeholder) placeholder.hidden = true;
-
-      if (!isOpen) {
-        tile.setAttribute('aria-expanded', 'true');
-        tile.classList.add('is-active');
-        target.hidden = false;
-        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } else if (placeholder) {
-        placeholder.hidden = false;
-      }
-    });
-  });
-</script>
-
-</body>
+            addEventListener(
+                "scroll",
+                () => {
+                    const max =
+                        document.documentElement.scrollHeight -
+                        innerHeight;
+                    const progress = max > 0 ? scrollY / max : 0;
+                    const shouldBeFull = progress > 0.8;
+                    if (shouldBeFull !== cupFull) {
+                        cupFull = shouldBeFull;
+                        cup.textContent = cupFull ? "🫖" : "☕";
+                        cup.classList.toggle("is-swapped", cupFull);
+                    }
+                },
+                { passive: true },
+            );
+        </script>
+    </body>
 </html>
