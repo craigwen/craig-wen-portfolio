@@ -23,34 +23,7 @@
                         role="img"
                         aria-label="How far you've read"
                         title="How far you've read"
-                    >
-                        <svg viewBox="0 0 26 24" aria-hidden="true">
-                            <defs>
-                                <clipPath id="brewClip">
-                                    <path
-                                        d="M4 7.5 h12 v7.5 a6 6 0 0 1 -6 6 h0 a6 6 0 0 1 -6 -6 z"
-                                    />
-                                </clipPath>
-                            </defs>
-                            <g clip-path="url(#brewClip)">
-                                <rect
-                                    class="brew-liquid"
-                                    x="4"
-                                    y="7.5"
-                                    width="12"
-                                    height="13.5"
-                                />
-                            </g>
-                            <path
-                                class="brew-cup"
-                                d="M4 7.5 h12 v7.5 a6 6 0 0 1 -6 6 h0 a6 6 0 0 1 -6 -6 z"
-                            />
-                            <path
-                                class="brew-handle"
-                                d="M16.5 10 a3.5 3.5 0 0 1 0 7"
-                            />
-                        </svg>
-                    </span>
+                    ></span>
                     <a href="https://www.linkedin.com/in/craig-wen/"
                         >LinkedIn</a
                     >
@@ -76,7 +49,14 @@
                             alt=""
                             class="cs-card-img"
                         />
-                        <span class="cs-card-eyebrow">Meta</span>
+                        <span class="cs-card-eyebrow">
+                            <img
+                                src="assets/logos/meta.svg"
+                                alt=""
+                                class="cs-card-logo"
+                            />
+                            <span class="sr-only">Meta</span>
+                        </span>
                         <h3>
                             Turning an account block into a quick task, not a
                             punishment
@@ -98,7 +78,14 @@
                             alt=""
                             class="cs-card-img"
                         />
-                        <span class="cs-card-eyebrow">Meta</span>
+                        <span class="cs-card-eyebrow">
+                            <img
+                                src="assets/logos/meta.svg"
+                                alt=""
+                                class="cs-card-logo"
+                            />
+                            <span class="sr-only">Meta</span>
+                        </span>
                         <h3>
                             Writing AI-generated explanations people can
                             actually trust
@@ -117,7 +104,14 @@
                             alt=""
                             class="cs-card-img"
                         />
-                        <span class="cs-card-eyebrow">Mastercard</span>
+                        <span class="cs-card-eyebrow">
+                            <img
+                                src="assets/logos/mastercard.svg"
+                                alt=""
+                                class="cs-card-logo"
+                            />
+                            <span class="sr-only">Mastercard</span>
+                        </span>
                         <h3>
                             Getting Click to Pay users to say yes to passkeys
                         </h3>
@@ -417,88 +411,6 @@
 
         <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-        <script>
-            const tiles = document.querySelectorAll(".company-tile");
-            const placeholder = document.querySelector(".job-placeholder");
-
-            tiles.forEach((tile) => {
-                tile.addEventListener("click", () => {
-                    const targetId = tile.dataset.target;
-                    const target = document.getElementById(targetId);
-                    const isOpen =
-                        tile.getAttribute("aria-expanded") === "true";
-
-                    tiles.forEach((t) => {
-                        t.setAttribute("aria-expanded", "false");
-                        t.classList.remove("is-active");
-                    });
-                    document.querySelectorAll(".job").forEach((job) => {
-                        job.hidden = true;
-                    });
-                    if (placeholder) placeholder.hidden = true;
-
-                    if (!isOpen) {
-                        tile.setAttribute("aria-expanded", "true");
-                        tile.classList.add("is-active");
-                        target.hidden = false;
-                        target.scrollIntoView({
-                            behavior: "smooth",
-                            block: "nearest",
-                        });
-                    } else if (placeholder) {
-                        placeholder.hidden = false;
-                    }
-                });
-            });
-
-            const toast = document.getElementById("toast");
-            let toastTimer;
-
-            document.querySelectorAll(".copy-email").forEach((link) => {
-                link.addEventListener("click", (e) => {
-                    if (!navigator.clipboard) return;
-                    e.preventDefault();
-                    navigator.clipboard
-                        .writeText(link.dataset.email)
-                        .then(() => {
-                            toast.textContent = "Copied — say hello anytime";
-                            toast.classList.add("is-visible");
-                            clearTimeout(toastTimer);
-                            toastTimer = setTimeout(() => {
-                                toast.classList.remove("is-visible");
-                            }, 2200);
-                        })
-                        .catch(() => {
-                            window.location.href = link.href;
-                        });
-                });
-            });
-
-            const brew = document.getElementById("brew");
-            let ticking = false;
-
-            function updateBrew() {
-                const max =
-                    document.documentElement.scrollHeight - innerHeight;
-                const progress = max > 0 ? Math.min(scrollY / max, 1) : 1;
-                brew.style.setProperty("--fill", progress.toFixed(3));
-                brew.classList.toggle("is-full", progress > 0.995);
-                ticking = false;
-            }
-
-            addEventListener(
-                "scroll",
-                () => {
-                    if (!ticking) {
-                        ticking = true;
-                        requestAnimationFrame(updateBrew);
-                    }
-                },
-                { passive: true },
-            );
-
-            addEventListener("resize", updateBrew, { passive: true });
-            updateBrew();
-        </script>
+        <script src="app.js"></script>
     </body>
 </html>
