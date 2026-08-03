@@ -16,7 +16,10 @@
 
 * { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5.5rem;
+}
 
 body {
   margin: 0;
@@ -35,6 +38,10 @@ main, footer {
 }
 
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
   border-bottom: 1px solid var(--rule);
   padding: 1.25rem 1.5rem;
 }
@@ -52,6 +59,48 @@ main, footer {
   font-weight: 600;
   font-size: 1.1rem;
   color: var(--ink);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* ---------- Scroll-progress coffee ---------- */
+
+.brew {
+  --fill: 0;
+  display: inline-flex;
+  width: 22px;
+  height: 20px;
+  cursor: default;
+}
+
+.brew svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.brew-cup,
+.brew-handle {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+
+.brew-liquid {
+  fill: #6f4020;
+  transform: translateY(calc((1 - var(--fill)) * 13.5px));
+  transition: transform 0.12s linear;
+}
+
+.brew.is-full .brew-cup,
+.brew.is-full .brew-handle {
+  stroke: var(--hero-bg);
 }
 
 .site-nav a {
@@ -352,15 +401,6 @@ footer {
   color: var(--ink);
   font-size: 0.95rem;
   margin: 0 0 0.6rem;
-}
-
-.cup {
-  display: inline-block;
-  transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
-}
-
-.cup.is-swapped {
-  transform: rotate(-8deg) scale(1.12);
 }
 
 /* ---------- Blinking caret after the name ---------- */
@@ -923,6 +963,6 @@ footer a {
 @media (prefers-reduced-motion: reduce) {
   .caret { animation: none; }
   .cs-topbar { animation: none; }
-  .cup { transition: none; }
+  .brew-liquid { transition: none; }
   .stat::after { transition: opacity 0.15s ease; }
 }

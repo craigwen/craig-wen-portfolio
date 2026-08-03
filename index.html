@@ -17,6 +17,39 @@
                     >Craig Wen<span class="caret" aria-hidden="true"></span
                 ></span>
                 <nav class="site-nav">
+                    <span
+                        class="brew"
+                        id="brew"
+                        role="img"
+                        aria-label="How far you've read"
+                        title="How far you've read"
+                    >
+                        <svg viewBox="0 0 26 24" aria-hidden="true">
+                            <defs>
+                                <clipPath id="brewClip">
+                                    <path
+                                        d="M4 7.5 h12 v7.5 a6 6 0 0 1 -6 6 h0 a6 6 0 0 1 -6 -6 z"
+                                    />
+                                </clipPath>
+                            </defs>
+                            <rect
+                                class="brew-liquid"
+                                x="4"
+                                y="7.5"
+                                width="12"
+                                height="13.5"
+                                clip-path="url(#brewClip)"
+                            />
+                            <path
+                                class="brew-cup"
+                                d="M4 7.5 h12 v7.5 a6 6 0 0 1 -6 6 h0 a6 6 0 0 1 -6 -6 z"
+                            />
+                            <path
+                                class="brew-handle"
+                                d="M16.5 10 a3.5 3.5 0 0 1 0 7"
+                            />
+                        </svg>
+                    </span>
                     <a href="https://www.linkedin.com/in/craig-wen/"
                         >LinkedIn</a
                     >
@@ -365,9 +398,8 @@
 
         <footer>
             <p class="footer-sign">
-                Made with
-                <span class="cup" id="cup" aria-hidden="true">☕</span> and a few
-                too many em dashes.
+                Made with <span aria-hidden="true">☕</span> and a few too many
+                em dashes.
             </p>
             <p>
                 Craig Wen —
@@ -441,25 +473,31 @@
                 });
             });
 
-            const cup = document.getElementById("cup");
-            let cupFull = false;
+            const brew = document.getElementById("brew");
+            let ticking = false;
+
+            function updateBrew() {
+                const max =
+                    document.documentElement.scrollHeight - innerHeight;
+                const progress = max > 0 ? Math.min(scrollY / max, 1) : 1;
+                brew.style.setProperty("--fill", progress.toFixed(3));
+                brew.classList.toggle("is-full", progress > 0.995);
+                ticking = false;
+            }
 
             addEventListener(
                 "scroll",
                 () => {
-                    const max =
-                        document.documentElement.scrollHeight -
-                        innerHeight;
-                    const progress = max > 0 ? scrollY / max : 0;
-                    const shouldBeFull = progress > 0.8;
-                    if (shouldBeFull !== cupFull) {
-                        cupFull = shouldBeFull;
-                        cup.textContent = cupFull ? "🫖" : "☕";
-                        cup.classList.toggle("is-swapped", cupFull);
+                    if (!ticking) {
+                        ticking = true;
+                        requestAnimationFrame(updateBrew);
                     }
                 },
                 { passive: true },
             );
+
+            addEventListener("resize", updateBrew, { passive: true });
+            updateBrew();
         </script>
     </body>
 </html>
