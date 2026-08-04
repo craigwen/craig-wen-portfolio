@@ -130,11 +130,6 @@ section h2 {
   margin: 0 0 1.5rem;
 }
 
-section h2::before {
-  content: '✦ ';
-  color: var(--hero-bg);
-}
-
 .experience, .education, .skills {
   padding: 2.5rem 0;
   border-top: 1px solid var(--rule);
@@ -685,12 +680,7 @@ footer a {
   margin: 0 0 1.25rem;
 }
 
-.cs-section h2::before {
-  content: '✦ ';
-  color: var(--hero-bg);
-}
-
-.cs-section p {
+.cs-.cs-section p {
   margin: 0 0 1.1rem;
   font-size: 1rem;
 }
