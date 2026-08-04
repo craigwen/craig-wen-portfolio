@@ -62,7 +62,14 @@ const typed = document.getElementById("typed");
 const caret = document.getElementById("caret");
 
 if (typed && caret) {
-    const roles = ["content designer", "content strategist", "model designer"];
+    const roles = [
+        "content designer",
+        "content strategist",
+        "model designer",
+        "content engineer",
+        "database manager",
+        "autopsy technician",
+    ];
 
     const TYPE = 68; // per character, plus jitter
     const DELETE = 30; // deleting reads faster than typing
