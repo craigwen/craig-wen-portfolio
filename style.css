@@ -425,32 +425,6 @@ footer {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ---------- "Words matter" callout ---------- */
-
-.words-matter {
-  margin: 1.2rem 0 0;
-  padding: 0.9rem 0 0.9rem 1rem;
-  border-left: 2.5px solid var(--hero-bg);
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--ink);
-}
-
-.words-matter::before {
-  content: 'Words matter';
-  display: block;
-  font-family: var(--sans);
-  font-style: normal;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--hero-bg);
-  margin-bottom: 0.35rem;
-}
-
 /* ---------- Copy-to-clipboard toast ---------- */
 
 .toast {
