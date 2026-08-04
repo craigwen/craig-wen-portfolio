@@ -1,35 +1,54 @@
 // Shared behaviour for the homepage and the case study pages.
 // Every block guards for its own markup, so this file is safe on any page.
 
-/* ---------- Experience: logo grid toggles (homepage only) ---------- */
+/* ---------- Experience: rail marks which job you're reading ---------- */
 
-const tiles = document.querySelectorAll(".company-tile");
-const placeholder = document.querySelector(".job-placeholder");
+const rail = document.querySelector(".exp-rail");
 
-tiles.forEach((tile) => {
-    tile.addEventListener("click", () => {
-        const target = document.getElementById(tile.dataset.target);
-        const isOpen = tile.getAttribute("aria-expanded") === "true";
+if (rail) {
+    const items = [...rail.querySelectorAll(".rail-item")];
+    const jobs = items.map((a) => document.querySelector(a.getAttribute("href")));
+    const OFFSET = 96; // sticky header (71px) plus breathing room
 
-        tiles.forEach((t) => {
-            t.setAttribute("aria-expanded", "false");
-            t.classList.remove("is-active");
+    let ticking = false;
+
+    // "Last job whose top has crossed the line" stays predictable when a job is
+    // taller than the viewport, or when two are on screen at once.
+    const sync = () => {
+        let idx = 0;
+        jobs.forEach((job, i) => {
+            if (job && job.getBoundingClientRect().top <= OFFSET + 8) idx = i;
         });
-        document.querySelectorAll(".job").forEach((job) => {
-            job.hidden = true;
-        });
-        if (placeholder) placeholder.hidden = true;
 
-        if (!isOpen) {
-            tile.setAttribute("aria-expanded", "true");
-            tile.classList.add("is-active");
-            target.hidden = false;
-            target.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        } else if (placeholder) {
-            placeholder.hidden = false;
+        // The last job sits too close to the end of the page for its top to
+        // ever reach the line, so bottoming out has to select it explicitly.
+        const doc = document.documentElement;
+        if (Math.ceil(scrollY + innerHeight) >= doc.scrollHeight - 2) {
+            idx = jobs.length - 1;
         }
-    });
-});
+
+        items.forEach((a, i) => {
+            a.classList.toggle("is-active", i === idx);
+            if (i === idx) a.setAttribute("aria-current", "true");
+            else a.removeAttribute("aria-current");
+        });
+        ticking = false;
+    };
+
+    addEventListener(
+        "scroll",
+        () => {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(sync);
+            }
+        },
+        { passive: true },
+    );
+
+    addEventListener("resize", sync, { passive: true });
+    sync();
+}
 
 /* ---------- Copy email to clipboard ---------- */
 

@@ -131,69 +131,60 @@
             <section class="experience">
                 <h2>Experience</h2>
 
-                <div
-                    class="logo-grid"
-                    role="tablist"
-                    aria-label="Companies I've worked at"
-                >
-                    <button
-                        class="company-tile"
-                        data-target="job-meta"
-                        aria-expanded="false"
-                        aria-controls="job-meta"
-                    >
-                        <img src="assets/logos/meta.svg" alt="" />
-                        <span class="company-name">Meta</span>
-                    </button>
-                    <button
-                        class="company-tile"
-                        data-target="job-mastercard"
-                        aria-expanded="false"
-                        aria-controls="job-mastercard"
-                    >
-                        <img src="assets/logos/mastercard.svg" alt="" />
-                        <span class="company-name">Mastercard</span>
-                    </button>
-                    <button
-                        class="company-tile"
-                        data-target="job-collegeboard"
-                        aria-expanded="false"
-                        aria-controls="job-collegeboard"
-                    >
-                        <img src="assets/logos/collegeboard.png" alt="" />
-                        <span class="company-name">College Board</span>
-                    </button>
-                    <button
-                        class="company-tile"
-                        data-target="job-ea"
-                        aria-expanded="false"
-                        aria-controls="job-ea"
-                    >
-                        <img src="assets/logos/ea.svg" alt="" />
-                        <span class="company-name">Electronic Arts</span>
-                    </button>
-                    <button
-                        class="company-tile"
-                        data-target="job-huge"
-                        aria-expanded="false"
-                        aria-controls="job-huge"
-                    >
-                        <img src="assets/logos/huge.png" alt="" />
-                        <span class="company-name">Huge</span>
-                    </button>
-                    <button
-                        class="company-tile"
-                        data-target="job-columbia"
-                        aria-expanded="false"
-                        aria-controls="job-columbia"
-                    >
-                        <img src="assets/logos/columbia.png" alt="" />
-                        <span class="company-name">Columbia University</span>
-                    </button>
-                </div>
+                <div class="exp-layout">
+                    <nav class="exp-rail" aria-label="Jump to a company">
+                        <a href="#job-meta" class="rail-item">
+                            <img
+                                src="assets/logos/meta.svg"
+                                alt=""
+                                class="rail-logo"
+                            />
+                            <span>Meta</span>
+                        </a>
+                        <a href="#job-mastercard" class="rail-item">
+                            <img
+                                src="assets/logos/mastercard.svg"
+                                alt=""
+                                class="rail-logo"
+                            />
+                            <span>Mastercard</span>
+                        </a>
+                        <a href="#job-collegeboard" class="rail-item">
+                            <img
+                                src="assets/logos/collegeboard.png"
+                                alt=""
+                                class="rail-logo"
+                            />
+                            <span>College Board</span>
+                        </a>
+                        <a href="#job-ea" class="rail-item">
+                            <img
+                                src="assets/logos/ea.svg"
+                                alt=""
+                                class="rail-logo"
+                            />
+                            <span>EA</span>
+                        </a>
+                        <a href="#job-huge" class="rail-item">
+                            <img
+                                src="assets/logos/huge.png"
+                                alt=""
+                                class="rail-logo"
+                            />
+                            <span>Huge</span>
+                        </a>
+                        <a href="#job-columbia" class="rail-item">
+                            <img
+                                src="assets/logos/columbia.png"
+                                alt=""
+                                class="rail-logo"
+                            />
+                            <span>Columbia</span>
+                        </a>
+                    </nav>
 
-                <div class="job-details">
-                    <article class="job" id="job-meta" hidden>
+                    <div class="exp-jobs">
+                    <article class="job" id="job-meta">
                         <div class="job-head">
                             <div class="job-identity">
                                 <img
@@ -241,7 +232,7 @@
                         </p>
                     </article>
 
-                    <article class="job" id="job-mastercard" hidden>
+                    <article class="job" id="job-mastercard">
                         <div class="job-head">
                             <div class="job-identity">
                                 <img
@@ -278,7 +269,7 @@
                         </p>
                     </article>
 
-                    <article class="job earlier" id="job-collegeboard" hidden>
+                    <article class="job earlier" id="job-collegeboard">
                         <div class="job-head">
                             <div class="job-identity">
                                 <img
@@ -305,7 +296,7 @@
                         </p>
                     </article>
 
-                    <article class="job earlier" id="job-ea" hidden>
+                    <article class="job earlier" id="job-ea">
                         <div class="job-head">
                             <div class="job-identity">
                                 <img
@@ -337,7 +328,7 @@
                         </p>
                     </article>
 
-                    <article class="job earlier" id="job-huge" hidden>
+                    <article class="job earlier" id="job-huge">
                         <div class="job-head">
                             <div class="job-identity">
                                 <img
@@ -363,7 +354,7 @@
                         </p>
                     </article>
 
-                    <article class="job earlier" id="job-columbia" hidden>
+                    <article class="job earlier" id="job-columbia">
                         <div class="job-head">
                             <div class="job-identity">
                                 <img
@@ -390,6 +381,7 @@
                             The hardest sentence is the one that's both.
                         </p>
                     </article>
+                    </div>
                 </div>
             </section>
         </main>
