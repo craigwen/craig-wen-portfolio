@@ -425,6 +425,29 @@ footer {
   transform: translateX(-50%) translateY(0);
 }
 
+/* Near the top of the page a note would open underneath the sticky header,
+   which sits above it in the stacking order. Those ones drop down instead. */
+.stat.is-below::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.stat.is-below:hover::after,
+.stat.is-below:focus-visible::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* A note is a pointer affordance, and it needs room. On touch there's nothing to
+   trigger it; in a narrow window one sitting near the right edge pushes the page
+   sideways, because a note that's merely transparent still takes up space. Drop
+   the box in both cases — app.js has mirrored the text into the span, so screen
+   readers get the note either way. */
+@media (hover: none), (max-width: 599px) {
+  .stat::after { display: none; }
+  .stat { cursor: auto; }
+}
+
 /* ---------- Copy-to-clipboard toast ---------- */
 
 .toast {

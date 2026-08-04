@@ -75,6 +75,42 @@ document.querySelectorAll(".copy-email").forEach((link) => {
     });
 });
 
+/* ---------- Hover notes: reachable by keyboard, readable by screen readers ---------- */
+
+// The note lives in data-note so CSS can draw it, but generated content isn't
+// reliably announced — so mirror it into the span for assistive tech, and make
+// the span focusable so the :focus-visible styling has something to fire on.
+document.querySelectorAll(".stat[data-note]").forEach((el) => {
+    el.tabIndex = 0;
+    const spoken = document.createElement("span");
+    spoken.className = "sr-only";
+    spoken.textContent = ` (${el.dataset.note})`;
+    el.append(spoken);
+});
+
+/* ---------- Footer sign-off ---------- */
+
+const sign = document.querySelector(".footer-sign");
+
+if (sign) {
+    // Index 0 is the line already in the markup: its ☕ is marked aria-hidden,
+    // and a textContent swap would throw that away, so that draw leaves it be.
+    const SIGNOFFS = [
+        null,
+        "No em dashes were harmed in the making of this site.",
+        "Shot on location in London. Runtime: about four minutes.",
+        "All copy written and performed by Craig Wen. Recorded live, no overdubs.",
+        "Liner notes available on request. There are no liner notes.",
+        "Patch 1.0.4 — tightened the headline, nerfed three adverbs. Em dashes still overtuned.",
+        "Progress saved. Please don't turn off the power.",
+        "Set in Fraunces and Inter, printed on #faf8f4.",
+        "First edition. Revised considerably more times than that implies.",
+    ];
+
+    const pick = SIGNOFFS[Math.floor(Math.random() * SIGNOFFS.length)];
+    if (pick) sign.textContent = pick;
+}
+
 /* ---------- Typewriter roles after the name ---------- */
 
 const typed = document.getElementById("typed");
