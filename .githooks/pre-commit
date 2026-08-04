@@ -1,0 +1,27 @@
+#!/bin/sh
+# Keep asset URLs in sync with asset contents before the commit is built.
+#
+# pre-commit, not pre-push: pre-push runs after the commit already exists, so
+# anything stamped there would sit in the working tree and never get pushed.
+
+repo="$(git rev-parse --show-toplevel)"
+
+if ! command -v python3 >/dev/null 2>&1; then
+    echo "pre-commit: python3 not found, skipping asset stamping" >&2
+    exit 0
+fi
+
+python3 "$repo/scripts/stamp-assets.py" || exit 1
+
+# Re-stage any page whose asset URLs just changed. Only pages already tracked
+# by git are touched.
+cd "$repo" || exit 1
+for page in *.html; do
+    [ -f "$page" ] || continue
+    if ! git diff --quiet -- "$page"; then
+        git add "$page"
+        echo "pre-commit: re-staged $page"
+    fi
+done
+
+exit 0
