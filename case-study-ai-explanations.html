@@ -62,7 +62,7 @@
     </ul>
     <p>Two more questions sat underneath all of it: how do we make it obvious the explanation was AI-generated, and how do we even define and measure "success" for a written explanation?</p>
     <div class="cs-figure">
-      <img src="assets/case-studies/cs2-example-personalized.png" alt="Redesigned removal notice labeled 'Meta AI support assistant,' showing the flagged comment and a personalized explanation: 'We found your comment contains language expressing a wish to cause deadly harm, which goes against our rules on violence and incitement.'">
+      <img src="assets/case-studies/cs2-example-personalized.png?v=d0e42100" alt="Redesigned removal notice labeled 'Meta AI support assistant,' showing the flagged comment and a personalized explanation: 'We found your comment contains language expressing a wish to cause deadly harm, which goes against our rules on violence and incitement.'">
       <figcaption>The redesigned notice — labeled as AI, referencing the actual content, and collecting quick feedback</figcaption>
     </div>
   </section>
@@ -89,7 +89,7 @@
     <h2>Checking the AI</h2>
     <p>A single bad output here could leak sensitive policy detail or hand a bad actor a workaround — so nothing went out unchecked. I designed a set of automated "judges," each scoring an output against one principle: policy accuracy, specificity, tone, internal-info exposure, and harmful echo (repeating harmful content back to the user). Any output that failed a judge was swapped for a safe fallback string before a person ever saw it.</p>
     <div class="cs-figure">
-      <img src="assets/case-studies/cs2-example-fallback.png" alt="Fallback removal notice with a generic explanation: 'The post may show sexual activity. This goes against our Community Standards on sexual activity. See rule.' No AI labeling or personalized language.">
+      <img src="assets/case-studies/cs2-example-fallback.png?v=ea1590b8" alt="Fallback removal notice with a generic explanation: 'The post may show sexual activity. This goes against our Community Standards on sexual activity. See rule.' No AI labeling or personalized language.">
       <figcaption>The safe fallback — plain and generic, shown whenever the AI's output didn't pass every judge</figcaption>
     </div>
   </section>
