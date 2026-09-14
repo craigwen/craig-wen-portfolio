@@ -87,7 +87,7 @@
   var bubble   = document.getElementById('bubble');
   var dialogue = document.getElementById('dialogue');
 
-  var GW = 96, GH = 40;
+  var GW = 192, GH = 80;
   canvas.width  = GW;
   canvas.height = GH;
 
@@ -107,12 +107,12 @@
 
   var skyStops = [
     [0,  '#0d0820'],
-    [7,  '#1a1040'],
-    [13, '#3a1250'],
-    [18, '#6a1f45'],
-    [22, '#9b3030'],
-    [26, '#d05025'],
-    [29, '#ff7733'],
+    [14, '#1a1040'],
+    [26, '#3a1250'],
+    [36, '#6a1f45'],
+    [44, '#9b3030'],
+    [52, '#d05025'],
+    [58, '#ff7733'],
   ];
 
   function skyAt(row) {
@@ -125,59 +125,59 @@
   }
 
   function drawCone(cx, cy) {
-    px(cx+3, cy,   '#ffaa77', 1);
-    px(cx+3, cy+1, '#ff9966', 1);
-    px(cx+2, cy+2, '#ffe8d8', 3);
-    px(cx+1, cy+3, '#ffaa77', 1); px(cx+2, cy+3, '#ff7733', 3); px(cx+5, cy+3, '#cc5520', 1);
-    px(cx+1, cy+4, '#ffaa77', 1); px(cx+2, cy+4, '#ff7733', 3); px(cx+5, cy+4, '#cc5520', 1);
-    px(cx+1, cy+5, '#ffe8d8', 5);
-    px(cx,   cy+6, '#ffaa77', 1); px(cx+1, cy+6, '#ff7733', 5); px(cx+6, cy+6, '#cc5520', 1);
-    px(cx,   cy+7, '#ffaa77', 1); px(cx+1, cy+7, '#ff7733', 5); px(cx+6, cy+7, '#cc5520', 1);
-    px(cx,   cy+8, '#ffe8d8', 7);
-    px(cx,   cy+9, '#ffaa77', 1); px(cx+1, cy+9, '#ff7733', 5); px(cx+6, cy+9, '#cc5520', 1);
-    px(cx-1, cy+10, '#5a3015', 9, 2);
+    px(cx+6,  cy,    '#ffaa77', 2);
+    px(cx+6,  cy+2,  '#ff9966', 2);
+    px(cx+4,  cy+4,  '#ffe8d8', 6);
+    px(cx+2,  cy+6,  '#ffaa77', 2); px(cx+4,  cy+6,  '#ff7733', 6); px(cx+10, cy+6,  '#cc5520', 2);
+    px(cx+2,  cy+8,  '#ffaa77', 2); px(cx+4,  cy+8,  '#ff7733', 6); px(cx+10, cy+8,  '#cc5520', 2);
+    px(cx+2,  cy+10, '#ffe8d8', 10);
+    px(cx,    cy+12, '#ffaa77', 2); px(cx+2,  cy+12, '#ff7733', 10); px(cx+12, cy+12, '#cc5520', 2);
+    px(cx,    cy+14, '#ffaa77', 2); px(cx+2,  cy+14, '#ff7733', 10); px(cx+12, cy+14, '#cc5520', 2);
+    px(cx,    cy+16, '#ffe8d8', 14);
+    px(cx,    cy+18, '#ffaa77', 2); px(cx+2,  cy+18, '#ff7733', 10); px(cx+12, cy+18, '#cc5520', 2);
+    px(cx-2,  cy+20, '#5a3015', 18, 4);
   }
 
   function drawBackground() {
     // Sky
-    for (var y = 0; y < 30; y++) px(0, y, skyAt(y), GW);
+    for (var y = 0; y < 60; y++) px(0, y, skyAt(y), GW);
 
     // Ground
-    var ground = ['#3d2010','#2d1508','#2d1508','#251205','#221004','#1e0d04','#1a0d05','#170b03','#140903','#120802'];
-    for (var yg = 30; yg < GH; yg++) px(0, yg, ground[yg - 30] || '#120802', GW);
+    var ground = ['#3d2010','#3d2010','#2d1508','#2d1508','#2d1508','#2d1508','#251205','#251205','#221004','#221004','#1e0d04','#1e0d04','#1a0d05','#1a0d05','#170b03','#170b03','#140903','#140903','#120802','#120802'];
+    for (var yg = 60; yg < GH; yg++) px(0, yg, ground[yg - 60] || '#120802', GW);
 
     // Stars
     [
-      [3,2],[9,4],[14,1],[16,2],[24,1],[32,4],[41,2],[50,1],[58,3],[66,2],[74,4],[83,1],[93,3],
-      [2,8],[7,6],[12,10],[17,7],[25,6],[33,9],[40,8],[48,10],[56,8],[63,11],[71,9],[80,7],[88,8],
-      [4,14],[10,12],[15,16],[20,14],[28,12],[37,15],[45,13],[53,16],[61,13],[70,16],[78,14],[87,11],[94,13],
-      [1,20],[8,22],[13,19],[19,21],[27,19],[35,22],[44,20],[52,23],[61,21],[69,19],[78,22],[86,20]
+      [6,4],[18,8],[28,2],[32,4],[48,2],[64,8],[82,4],[100,2],[116,6],[132,4],[148,8],[166,2],[186,6],
+      [4,16],[14,12],[24,20],[34,14],[50,12],[66,18],[80,16],[96,20],[112,16],[126,22],[142,18],[160,14],[176,16],
+      [8,28],[20,24],[30,32],[40,28],[56,24],[74,30],[90,26],[106,32],[122,26],[140,32],[156,28],[174,22],[188,26],
+      [2,40],[16,44],[26,38],[38,42],[54,38],[70,44],[88,40],[104,46],[122,42],[138,38],[156,44],[172,40]
     ].forEach(function(s) { px(s[0], s[1], '#e0d0f8'); });
-    [[9,4],[32,4],[50,1],[56,8],[44,20]].forEach(function(s) { px(s[0], s[1], '#ffffff'); });
+    [[18,8],[64,8],[100,2],[112,16],[88,40]].forEach(function(s) { px(s[0], s[1], '#ffffff'); });
 
     // Moon
-    px(90, 1, '#fff4b0', 3, 3);
+    px(180, 2, '#fff4b0', 6, 6);
 
     // Barrier
-    px(22, 22, '#8b6040', 52, 1);
-    for (var bx = 22; bx < 74; bx++) {
-      for (var by = 23; by <= 27; by++) {
-        px(bx, by, Math.floor((bx + by) / 5) % 2 === 0 ? '#ffe066' : '#1a0d05');
+    px(44, 44, '#8b6040', 104, 2);
+    for (var bx = 44; bx < 148; bx++) {
+      for (var by = 46; by <= 54; by++) {
+        px(bx, by, Math.floor((bx + by) / 10) % 2 === 0 ? '#ffe066' : '#1a0d05');
       }
     }
-    px(22, 28, '#8b6040', 52, 1);
-    px(25, 29, '#8b6040', 2, 4);
-    px(23, 32, '#8b6040', 6, 1);
-    px(46, 29, '#8b6040', 2, 3);
-    px(68, 29, '#8b6040', 2, 4);
-    px(66, 32, '#8b6040', 6, 1);
+    px(44, 56, '#8b6040', 104, 2);
+    px(50, 58, '#8b6040', 4, 8);
+    px(46, 64, '#8b6040', 12, 2);
+    px(92, 58, '#8b6040', 4, 6);
+    px(136, 58, '#8b6040', 4, 8);
+    px(132, 64, '#8b6040', 12, 2);
 
     // Cones
-    drawCone(19, 20);
-    drawCone(78, 20);
+    drawCone(38, 40);
+    drawCone(156, 40);
 
     // Road dashes
-    for (var dx = 0; dx < GW; dx += 9) px(dx, 31, '#4a2e10', 5, 1);
+    for (var dx = 0; dx < GW; dx += 18) px(dx, 62, '#4a2e10', 10, 2);
   }
 
   // === CHARACTER (Craig) ===
@@ -188,62 +188,59 @@
   var SHOE  = '#1a0d05';
 
   function drawCharacter(cx, baseY, frame) {
-    // Hair dome (4 rows, 10px wide)
-    px(cx+2, baseY-25, HAIR, 6);
-    px(cx+1, baseY-24, HAIR, 8);
-    px(cx,   baseY-23, HAIR, 10);
-    px(cx,   baseY-22, HAIR, 10);
-    // BIG FACE — Maniac Mansion proportions (10px wide, 8 rows = 46% of height)
-    px(cx, baseY-21, SKIN, 10);  // forehead
-    // Eyebrows (lighter, thinner)
-    px(cx, baseY-20, SKIN, 10);
-    px(cx+1, baseY-20, '#5a3010', 2);
-    px(cx+7, baseY-20, '#5a3010', 2);
-    // Eye shines (1px glint above each pupil)
-    px(cx, baseY-19, SKIN, 10);
-    px(cx+2, baseY-19, '#ffffd8', 1);
-    px(cx+7, baseY-19, '#ffffd8', 1);
-    // Pupils (2px friendly dots)
-    px(cx, baseY-18, SKIN, 10);
-    px(cx+1, baseY-18, '#1a0d05', 2);
-    px(cx+7, baseY-18, '#1a0d05', 2);
+    // Hair dome (4 rows, 20px wide)
+    px(cx+4, baseY-50, HAIR, 12);
+    px(cx+2, baseY-48, HAIR, 16);
+    px(cx,   baseY-46, HAIR, 20);
+    px(cx,   baseY-44, HAIR, 20);
+    // BIG FACE (20px wide, 16 rows)
+    px(cx, baseY-42, SKIN, 20);
+    // Eyebrows
+    px(cx, baseY-40, SKIN, 20);
+    px(cx+2,  baseY-40, '#5a3010', 4);
+    px(cx+14, baseY-40, '#5a3010', 4);
+    // Eye shines
+    px(cx, baseY-38, SKIN, 20);
+    px(cx+4,  baseY-38, '#ffffd8', 2);
+    px(cx+14, baseY-38, '#ffffd8', 2);
+    // Pupils
+    px(cx, baseY-36, SKIN, 20);
+    px(cx+2,  baseY-36, '#1a0d05', 4);
+    px(cx+14, baseY-36, '#1a0d05', 4);
     // Nose
-    px(cx, baseY-17, SKIN, 10);
-    px(cx+4, baseY-17, '#d09060', 1);
+    px(cx, baseY-34, SKIN, 20);
+    px(cx+8, baseY-34, '#d09060', 2);
     // Upper lip
-    px(cx, baseY-16, SKIN, 10);
-    // Mouth (small, soft smile)
-    px(cx, baseY-15, SKIN, 10);
-    px(cx+3, baseY-15, '#8b3010', 3);
+    px(cx, baseY-32, SKIN, 20);
+    // Mouth
+    px(cx, baseY-30, SKIN, 20);
+    px(cx+6, baseY-30, '#8b3010', 6);
     // Chin
-    px(cx, baseY-14, SKIN, 10);
+    px(cx, baseY-28, SKIN, 20);
     // Neck
-    px(cx+3, baseY-13, SKIN, 4);
-    // Shirt (shoulders + 3 arm rows)
-    px(cx,   baseY-12, SHIRT, 10);
-    px(cx-2, baseY-11, SHIRT, 2); px(cx, baseY-11, SHIRT, 10); px(cx+10, baseY-11, SHIRT, 2);
-    px(cx-2, baseY-10, SHIRT, 2); px(cx, baseY-10, SHIRT, 10); px(cx+10, baseY-10, SHIRT, 2);
-    px(cx-2, baseY-9,  SHIRT, 2); px(cx, baseY-9,  SHIRT, 10); px(cx+10, baseY-9,  SHIRT, 2);
+    px(cx+6, baseY-26, SKIN, 8);
+    // Shirt (shoulders + 3 arm rows each 2px tall)
+    px(cx,   baseY-24, SHIRT, 20);
+    px(cx-4, baseY-22, SHIRT, 4); px(cx, baseY-22, SHIRT, 20); px(cx+20, baseY-22, SHIRT, 4);
+    px(cx-4, baseY-20, SHIRT, 4); px(cx, baseY-20, SHIRT, 20); px(cx+20, baseY-20, SHIRT, 4);
+    px(cx-4, baseY-18, SHIRT, 4); px(cx, baseY-18, SHIRT, 20); px(cx+20, baseY-18, SHIRT, 4);
     // Belt + sleeve
-    px(cx-2, baseY-8, SHIRT, 2); px(cx, baseY-8, '#7a4820', 10); px(cx+10, baseY-8, SHIRT, 2);
+    px(cx-4, baseY-16, SHIRT, 4); px(cx, baseY-16, '#7a4820', 20); px(cx+20, baseY-16, SHIRT, 4);
     // Sleeve into pants, then hands
-    px(cx-2, baseY-7, SHIRT, 2); px(cx, baseY-7, PANTS, 10); px(cx+10, baseY-7, SHIRT, 2);
-    px(cx-2, baseY-6, SKIN,  2); px(cx, baseY-6, PANTS, 10); px(cx+10, baseY-6, SKIN,  2);
-    px(cx,   baseY-5, PANTS, 10);
-    // Legs split (3 rows)
-    px(cx, baseY-4, PANTS, 4); px(cx+6, baseY-4, PANTS, 4);
-    px(cx, baseY-3, PANTS, 4); px(cx+6, baseY-3, PANTS, 4);
-    px(cx, baseY-2, PANTS, 4); px(cx+6, baseY-2, PANTS, 4);
-    // Shoes (2 rows, frame-dependent)
+    px(cx-4, baseY-14, SHIRT, 4); px(cx, baseY-14, PANTS, 20); px(cx+20, baseY-14, SHIRT, 4);
+    px(cx-4, baseY-12, SKIN,  4); px(cx, baseY-12, PANTS, 20); px(cx+20, baseY-12, SKIN,  4);
+    px(cx,   baseY-10, PANTS, 20);
+    // Legs split (3 pairs of rows)
+    px(cx, baseY-8, PANTS, 8); px(cx+12, baseY-8, PANTS, 8);
+    px(cx, baseY-6, PANTS, 8); px(cx+12, baseY-6, PANTS, 8);
+    px(cx, baseY-4, PANTS, 8); px(cx+12, baseY-4, PANTS, 8);
+    // Shoes (4 rows, frame-dependent)
     if (frame === 0) {
-      px(cx-1, baseY-1, SHOE, 5); px(cx+6, baseY-1, SHOE, 5);
-      px(cx-1, baseY,   SHOE, 5); px(cx+6, baseY,   SHOE, 5);
+      px(cx-2, baseY-2, SHOE, 10, 4); px(cx+12, baseY-2, SHOE, 10, 4);
     } else if (frame === 1) {
-      px(cx-2, baseY-1, SHOE, 6); px(cx+6, baseY-1, SHOE, 4);
-      px(cx-2, baseY,   SHOE, 6); px(cx+6, baseY,   SHOE, 4);
+      px(cx-4, baseY-2, SHOE, 12, 4); px(cx+12, baseY-2, SHOE, 8, 4);
     } else {
-      px(cx-1, baseY-1, SHOE, 4); px(cx+6, baseY-1, SHOE, 6);
-      px(cx-1, baseY,   SHOE, 4); px(cx+6, baseY,   SHOE, 6);
+      px(cx-2, baseY-2, SHOE, 8, 4); px(cx+12, baseY-2, SHOE, 12, 4);
     }
   }
 
@@ -254,9 +251,9 @@
   // === ANIMATION ===
   var startTime = null;
   var WALK_MS   = 1000;
-  var START_X   = -15;
-  var END_X     = 2;
-  var CHAR_Y    = 31;
+  var START_X   = -30;
+  var END_X     = 4;
+  var CHAR_Y    = 62;
   var walkDone  = false;
 
   function showBubble() {
