@@ -14,48 +14,17 @@
 
   body {
     background: #0d0820;
-    color: #fef0d9;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     -webkit-font-smoothing: antialiased;
   }
 
-  .page-text {
-    padding: 3.5rem 2rem 3rem;
-    max-width: 44rem;
+  .canvas-wrap {
+    position: relative;
     flex-shrink: 0;
   }
-
-  .badge {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.55rem;
-    color: #ff7733;
-    letter-spacing: 0.1em;
-    display: block;
-    margin-bottom: 2rem;
-  }
-
-  .headline {
-    font-family: 'Press Start 2P', monospace;
-    font-size: clamp(0.7rem, 1.8vw, 0.95rem);
-    line-height: 2;
-    color: #fef0d9;
-    margin-bottom: 1.5rem;
-  }
-
-  .headline a {
-    color: #ff7733;
-    text-decoration: none;
-  }
-
-  .headline a:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .spacer { flex: 1; }
 
   #scene {
     width: 100%;
@@ -64,30 +33,67 @@
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
+
+  #bubble {
+    position: absolute;
+    left: 7%;
+    top: 4%;
+    max-width: 55%;
+    background: #fef0d9;
+    border: 3px solid #1a0d05;
+    padding: 0.6em 0.9em;
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(0.45rem, 1.1vw, 0.7rem);
+    line-height: 2.2;
+    color: #1a0d05;
+  }
+
+  #bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -11px; left: 16px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 11px solid #1a0d05;
+  }
+
+  #bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 19px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fef0d9;
+    z-index: 1;
+  }
+
+  #bubble a { color: #ff7733; text-decoration: none; }
+  #bubble a:hover { text-decoration: underline; text-underline-offset: 3px; }
 </style>
 </head>
 <body>
 
-<div class="page-text">
-  <p class="headline">I'm giving my portfolio a much needed overhaul. For now, find me on <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>.</p>
+<div class="canvas-wrap">
+  <canvas id="scene" aria-label="Pixel art scene: a construction site at sunset, with a pixel character, traffic cones, a sawhorse barrier, and a road"></canvas>
+  <div id="bubble" hidden>
+    <p id="dialogue"></p>
+  </div>
 </div>
-
-<div class="spacer"></div>
-
-<canvas id="scene" aria-label="Pixel art scene: a construction site at sunset, with traffic cones, a sawhorse barrier, and a road"></canvas>
 
 <script>
 (function () {
-  const canvas = document.getElementById('scene');
-  const ctx = canvas.getContext('2d');
+  var canvas   = document.getElementById('scene');
+  var ctx      = canvas.getContext('2d');
+  var bubble   = document.getElementById('bubble');
+  var dialogue = document.getElementById('dialogue');
 
-  const GW = 96, GH = 40;
-  canvas.width = GW;
+  var GW = 96, GH = 40;
+  canvas.width  = GW;
   canvas.height = GH;
 
   function px(x, y, c, w, h) {
-    w = (w === undefined) ? 1 : w;
-    h = (h === undefined) ? 1 : h;
+    w = w === undefined ? 1 : w;
+    h = h === undefined ? 1 : h;
     if (x >= GW || y >= GH || x + w <= 0 || y + h <= 0) return;
     ctx.fillStyle = c;
     ctx.fillRect(x, y, Math.min(w, GW - x), Math.min(h, GH - y));
@@ -95,11 +101,11 @@
 
   function lerpColor(c0, c1, t) {
     function hex(s) { return [parseInt(s.slice(1,3),16), parseInt(s.slice(3,5),16), parseInt(s.slice(5,7),16)]; }
-    const [r0,g0,b0] = hex(c0), [r1,g1,b1] = hex(c1);
-    return 'rgb('+~~(r0+(r1-r0)*t)+','+~~(g0+(g1-g0)*t)+','+~~(b0+(b1-b0)*t)+')';
+    var a = hex(c0), b = hex(c1);
+    return 'rgb('+~~(a[0]+(b[0]-a[0])*t)+','+~~(a[1]+(b[1]-a[1])*t)+','+~~(a[2]+(b[2]-a[2])*t)+')';
   }
 
-  const skyStops = [
+  var skyStops = [
     [0,  '#0d0820'],
     [7,  '#1a1040'],
     [13, '#3a1250'],
@@ -110,56 +116,14 @@
   ];
 
   function skyAt(row) {
-    for (let i = 0; i < skyStops.length - 1; i++) {
-      const [r0, c0] = skyStops[i], [r1, c1] = skyStops[i + 1];
+    for (var i = 0; i < skyStops.length - 1; i++) {
+      var r0 = skyStops[i][0], c0 = skyStops[i][1];
+      var r1 = skyStops[i+1][0], c1 = skyStops[i+1][1];
       if (row >= r0 && row < r1) return lerpColor(c0, c1, (row - r0) / (r1 - r0));
     }
     return skyStops[skyStops.length - 1][1];
   }
 
-  // Sky
-  for (let y = 0; y < 30; y++) px(0, y, skyAt(y), GW);
-
-  // Ground (warm dark asphalt, lighter at horizon, darker in foreground)
-  const groundPalette = ['#3d2010','#2d1508','#2d1508','#251205','#221004','#1e0d04','#1a0d05','#170b03','#140903','#120802'];
-  for (let y = 30; y < GH; y++) px(0, y, groundPalette[y - 30] || '#120802', GW);
-
-  // === STARS ===
-  [
-    [3,2],[9,4],[14,1],[16,2],[24,1],[32,4],[41,2],[50,1],[58,3],[66,2],[74,4],[83,1],[93,3],
-    [2,8],[7,6],[12,10],[17,7],[25,6],[33,9],[40,8],[48,10],[56,8],[63,11],[71,9],[80,7],[88,8],
-    [4,14],[10,12],[15,16],[20,14],[28,12],[37,15],[45,13],[53,16],[61,13],[70,16],[78,14],[87,11],[94,13],
-    [1,20],[8,22],[13,19],[19,21],[27,19],[35,22],[44,20],[52,23],[61,21],[69,19],[78,22],[86,20]
-  ].forEach(function(s) { px(s[0], s[1], '#e0d0f8'); });
-
-  // Brighter accent stars
-  [[9,4],[32,4],[50,1],[56,8],[44,20]].forEach(function(s) { px(s[0], s[1], '#ffffff'); });
-
-  // === MOON (full) ===
-  px(90, 1, '#fff4b0', 3, 3);
-
-  // === BARRIER ===
-  // Top rail
-  px(22, 22, '#8b6040', 52, 1);
-  // Diagonal stripe panel (rows 23–27)
-  for (var bx = 22; bx < 74; bx++) {
-    for (var by = 23; by <= 27; by++) {
-      var stripe = Math.floor((bx + by) / 5) % 2;
-      px(bx, by, stripe === 0 ? '#ffe066' : '#1a0d05');
-    }
-  }
-  // Bottom rail
-  px(22, 28, '#8b6040', 52, 1);
-  // Left leg + foot
-  px(25, 29, '#8b6040', 2, 4);
-  px(23, 32, '#8b6040', 6, 1);
-  // Center leg
-  px(46, 29, '#8b6040', 2, 3);
-  // Right leg + foot
-  px(68, 29, '#8b6040', 2, 4);
-  px(66, 32, '#8b6040', 6, 1);
-
-  // === TRAFFIC CONES ===
   function drawCone(cx, cy) {
     px(cx+3, cy,   '#ffaa77', 1);
     px(cx+3, cy+1, '#ff9966', 1);
@@ -174,13 +138,133 @@
     px(cx-1, cy+10, '#5a3015', 9, 2);
   }
 
-  drawCone(14, 20);
-  drawCone(78, 20);
+  function drawBackground() {
+    // Sky
+    for (var y = 0; y < 30; y++) px(0, y, skyAt(y), GW);
 
-  // === ROAD DASHES ===
-  for (var dx = 0; dx < GW; dx += 9) {
-    px(dx, 31, '#4a2e10', 5, 1);
+    // Ground
+    var ground = ['#3d2010','#2d1508','#2d1508','#251205','#221004','#1e0d04','#1a0d05','#170b03','#140903','#120802'];
+    for (var yg = 30; yg < GH; yg++) px(0, yg, ground[yg - 30] || '#120802', GW);
+
+    // Stars
+    [
+      [3,2],[9,4],[14,1],[16,2],[24,1],[32,4],[41,2],[50,1],[58,3],[66,2],[74,4],[83,1],[93,3],
+      [2,8],[7,6],[12,10],[17,7],[25,6],[33,9],[40,8],[48,10],[56,8],[63,11],[71,9],[80,7],[88,8],
+      [4,14],[10,12],[15,16],[20,14],[28,12],[37,15],[45,13],[53,16],[61,13],[70,16],[78,14],[87,11],[94,13],
+      [1,20],[8,22],[13,19],[19,21],[27,19],[35,22],[44,20],[52,23],[61,21],[69,19],[78,22],[86,20]
+    ].forEach(function(s) { px(s[0], s[1], '#e0d0f8'); });
+    [[9,4],[32,4],[50,1],[56,8],[44,20]].forEach(function(s) { px(s[0], s[1], '#ffffff'); });
+
+    // Moon
+    px(90, 1, '#fff4b0', 3, 3);
+
+    // Barrier
+    px(22, 22, '#8b6040', 52, 1);
+    for (var bx = 22; bx < 74; bx++) {
+      for (var by = 23; by <= 27; by++) {
+        px(bx, by, Math.floor((bx + by) / 5) % 2 === 0 ? '#ffe066' : '#1a0d05');
+      }
+    }
+    px(22, 28, '#8b6040', 52, 1);
+    px(25, 29, '#8b6040', 2, 4);
+    px(23, 32, '#8b6040', 6, 1);
+    px(46, 29, '#8b6040', 2, 3);
+    px(68, 29, '#8b6040', 2, 4);
+    px(66, 32, '#8b6040', 6, 1);
+
+    // Cones
+    drawCone(14, 20);
+    drawCone(78, 20);
+
+    // Road dashes
+    for (var dx = 0; dx < GW; dx += 9) px(dx, 31, '#4a2e10', 5, 1);
   }
+
+  // === CHARACTER (Craig) ===
+  var HAIR  = '#1a0d05';
+  var SKIN  = '#f0b87a';
+  var SHIRT = '#3d5a7a';
+  var PANTS = '#2a3a4a';
+  var SHOE  = '#1a0d05';
+
+  function drawCharacter(cx, baseY, frame) {
+    px(cx+1, baseY-9, HAIR,  2);      // hair top
+    px(cx,   baseY-8, HAIR,  4);      // hair
+    px(cx,   baseY-7, SKIN,  4);      // face
+    px(cx+1, baseY-6, SKIN,  2);      // neck
+    px(cx,   baseY-5, SHIRT, 4);      // shirt
+    px(cx,   baseY-4, SHIRT, 4);
+    px(cx,   baseY-3, HAIR,  4);      // belt
+    px(cx,   baseY-2, PANTS, 4);      // pants
+    px(cx,   baseY-1, PANTS, 4);
+    // feet
+    if (frame === 0) {
+      px(cx,   baseY, SHOE, 2);       // standing: feet together
+      px(cx+2, baseY, SHOE, 2);
+    } else if (frame === 1) {
+      px(cx-1, baseY, SHOE, 2);       // walk A: left foot forward
+      px(cx+2, baseY, SHOE, 2);
+    } else {
+      px(cx,   baseY, SHOE, 2);       // walk B: right foot forward
+      px(cx+3, baseY, SHOE, 2);
+    }
+  }
+
+  // Draw background once, snapshot for fast restore
+  drawBackground();
+  var bgData = ctx.getImageData(0, 0, GW, GH);
+
+  // === ANIMATION ===
+  var startTime = null;
+  var WALK_MS   = 1000;
+  var START_X   = -5;
+  var END_X     = 8;
+  var CHAR_Y    = 29;
+  var walkDone  = false;
+
+  function showBubble() {
+    var plain = "I'm giving my portfolio a much needed overhaul. For now, find me on ";
+    var link  = 'LinkedIn';
+    var full  = plain + link;
+    var i     = 0;
+    bubble.hidden = false;
+    (function type() {
+      dialogue.textContent = full.slice(0, ++i);
+      if (i < full.length) {
+        setTimeout(type, 40);
+      } else {
+        dialogue.innerHTML = plain +
+          '<a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>';
+      }
+    })();
+  }
+
+  function animate(ts) {
+    if (!startTime) startTime = ts;
+    var elapsed = ts - startTime;
+
+    ctx.putImageData(bgData, 0, 0);
+
+    var charX, frame;
+    if (elapsed < WALK_MS) {
+      var t = elapsed / WALK_MS;
+      charX = Math.floor(START_X + (END_X - START_X) * t);
+      frame = (Math.floor(elapsed / 130) % 2) + 1;
+    } else {
+      charX = END_X;
+      frame = 0;
+      if (!walkDone) {
+        walkDone = true;
+        showBubble();
+      }
+    }
+
+    drawCharacter(charX, CHAR_Y, frame);
+
+    if (!walkDone) requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
 
 })();
 </script>
