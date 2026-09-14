@@ -188,28 +188,48 @@
   var SHOE  = '#1a0d05';
 
   function drawCharacter(cx, baseY, frame) {
-    px(cx+2, baseY-17, HAIR,  4);
-    px(cx+1, baseY-16, HAIR,  6);
-    px(cx+1, baseY-15, SKIN,  6);
-    px(cx+1, baseY-14, SKIN,  6);
-    px(cx+3, baseY-13, SKIN,  2);
-    px(cx,   baseY-12, SHIRT, 8);
-    px(cx,   baseY-11, SHIRT, 8);
-    px(cx,   baseY-10, SHIRT, 8);
-    px(cx,   baseY-9,  SHIRT, 8);
-    px(cx,   baseY-8,  HAIR,  8);
-    px(cx,   baseY-7,  PANTS, 8);
-    px(cx,   baseY-6,  PANTS, 8);
-    px(cx,   baseY-5,  PANTS, 8);
-    px(cx,   baseY-4,  PANTS, 3); px(cx+5, baseY-4, PANTS, 3);
-    px(cx,   baseY-3,  PANTS, 3); px(cx+5, baseY-3, PANTS, 3);
-    px(cx,   baseY-2,  PANTS, 3); px(cx+5, baseY-2, PANTS, 3);
+    // Hair (3 rows)
+    px(cx+3, baseY-19, HAIR, 4);
+    px(cx+1, baseY-18, HAIR, 8);
+    px(cx+1, baseY-17, HAIR, 8);
+    // Face (4 rows, 8px wide)
+    px(cx+1, baseY-16, SKIN, 8);
+    px(cx+1, baseY-15, SKIN, 8);
+    px(cx+1, baseY-14, SKIN, 8);
+    px(cx+1, baseY-13, SKIN, 8);
+    // Eyes
+    px(cx+2, baseY-15, '#1a0d05', 2);
+    px(cx+6, baseY-15, '#1a0d05', 2);
+    // Mouth
+    px(cx+3, baseY-13, '#cc6644', 3);
+    // Neck
+    px(cx+3, baseY-12, SKIN, 4);
+    // Shirt (body 10px, shoulders)
+    px(cx,   baseY-11, SHIRT, 10);
+    // Arms rows (shirt + arm extensions)
+    px(cx-2, baseY-10, SHIRT, 2); px(cx, baseY-10, SHIRT, 10); px(cx+10, baseY-10, SHIRT, 2);
+    px(cx-2, baseY-9,  SHIRT, 2); px(cx, baseY-9,  SHIRT, 10); px(cx+10, baseY-9,  SHIRT, 2);
+    // Hands (skin at arm end)
+    px(cx-2, baseY-8,  SKIN,  2); px(cx, baseY-8,  SHIRT, 10); px(cx+10, baseY-8,  SKIN,  2);
+    // Belt
+    px(cx,   baseY-7,  HAIR,  10);
+    // Pants upper
+    px(cx,   baseY-6,  PANTS, 10);
+    px(cx,   baseY-5,  PANTS, 10);
+    // Legs split (4px each, 2px gap between)
+    px(cx,   baseY-4,  PANTS, 4); px(cx+6, baseY-4, PANTS, 4);
+    px(cx,   baseY-3,  PANTS, 4); px(cx+6, baseY-3, PANTS, 4);
+    px(cx,   baseY-2,  PANTS, 4); px(cx+6, baseY-2, PANTS, 4);
+    // Shoes (2 rows)
     if (frame === 0) {
-      px(cx,   baseY-1, SHOE, 3); px(cx+5, baseY-1, SHOE, 3);
+      px(cx-1, baseY-1, SHOE, 5); px(cx+6, baseY-1, SHOE, 5);
+      px(cx-1, baseY,   SHOE, 5); px(cx+6, baseY,   SHOE, 5);
     } else if (frame === 1) {
-      px(cx-1, baseY-1, SHOE, 4); px(cx+5, baseY-1, SHOE, 3);
+      px(cx-2, baseY-1, SHOE, 6); px(cx+6, baseY-1, SHOE, 4);
+      px(cx-2, baseY,   SHOE, 6); px(cx+6, baseY,   SHOE, 4);
     } else {
-      px(cx,   baseY-1, SHOE, 3); px(cx+6, baseY-1, SHOE, 4);
+      px(cx-1, baseY-1, SHOE, 4); px(cx+6, baseY-1, SHOE, 6);
+      px(cx-1, baseY,   SHOE, 4); px(cx+6, baseY,   SHOE, 6);
     }
   }
 
@@ -220,9 +240,9 @@
   // === ANIMATION ===
   var startTime = null;
   var WALK_MS   = 1000;
-  var START_X   = -10;
-  var END_X     = 4;
-  var CHAR_Y    = 29;
+  var START_X   = -12;
+  var END_X     = 1;
+  var CHAR_Y    = 31;
   var walkDone  = false;
 
   function showBubble() {
