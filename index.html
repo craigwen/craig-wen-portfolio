@@ -37,7 +37,7 @@
   #bubble {
     position: absolute;
     left: 5%;
-    bottom: 73%;
+    bottom: 87%;
     max-width: 60%;
     background: #fef0d9;
     border: 3px solid #1a0d05;
@@ -188,35 +188,42 @@
   var SHOE  = '#1a0d05';
 
   function drawCharacter(cx, baseY, frame) {
-    // Hair (3 rows)
-    px(cx+2, baseY-19, HAIR, 6);
-    px(cx+1, baseY-18, HAIR, 8);
-    px(cx+1, baseY-17, HAIR, 8);
-    // Face (8px wide, 4 rows)
-    px(cx+1, baseY-16, SKIN, 8);
-    px(cx+1, baseY-15, SKIN, 8);
-    px(cx+1, baseY-14, SKIN, 8);
-    px(cx+1, baseY-13, SKIN, 8);
+    // Hair (4 rows)
+    px(cx+2, baseY-25, HAIR, 6);
+    px(cx+1, baseY-24, HAIR, 8);
+    px(cx+1, baseY-23, HAIR, 8);
+    px(cx+1, baseY-22, HAIR, 8);
+    // Face (5 rows, 8px wide)
+    px(cx+1, baseY-21, SKIN, 8);
+    px(cx+1, baseY-20, SKIN, 8);
+    px(cx+1, baseY-19, SKIN, 8);
+    px(cx+1, baseY-18, SKIN, 8);
+    px(cx+1, baseY-17, SKIN, 8);
     // Eyes
-    px(cx+2, baseY-15, '#1a0d05', 2);
-    px(cx+6, baseY-15, '#1a0d05', 2);
+    px(cx+2, baseY-20, '#1a0d05', 2);
+    px(cx+6, baseY-20, '#1a0d05', 2);
     // Mouth
-    px(cx+3, baseY-13, '#cc6644', 3);
+    px(cx+3, baseY-17, '#cc6644', 3);
     // Neck
-    px(cx+3, baseY-12, SKIN, 4);
-    // Shirt shoulders (no arms yet)
-    px(cx,   baseY-11, SHIRT, 10);
-    // Arms alongside shirt (4 rows)
-    px(cx-2, baseY-10, SHIRT, 2); px(cx, baseY-10, SHIRT, 10); px(cx+10, baseY-10, SHIRT, 2);
-    px(cx-2, baseY-9,  SHIRT, 2); px(cx, baseY-9,  SHIRT, 10); px(cx+10, baseY-9,  SHIRT, 2);
-    px(cx-2, baseY-8,  SHIRT, 2); px(cx, baseY-8,  SHIRT, 10); px(cx+10, baseY-8,  SHIRT, 2);
-    // Arms continue past belt (sleeve alongside belt, then hand at first pants row)
-    px(cx-2, baseY-7,  SHIRT, 2); px(cx, baseY-7, '#7a4820', 10); px(cx+10, baseY-7,  SHIRT, 2);
-    px(cx-2, baseY-6,  SKIN,  2); px(cx, baseY-6,  PANTS, 10);    px(cx+10, baseY-6,  SKIN,  2);
+    px(cx+3, baseY-16, SKIN, 4);
+    // Shirt shoulders
+    px(cx,   baseY-15, SHIRT, 10);
+    // Arms + shirt (4 rows)
+    px(cx-2, baseY-14, SHIRT, 2); px(cx, baseY-14, SHIRT, 10); px(cx+10, baseY-14, SHIRT, 2);
+    px(cx-2, baseY-13, SHIRT, 2); px(cx, baseY-13, SHIRT, 10); px(cx+10, baseY-13, SHIRT, 2);
+    px(cx-2, baseY-12, SHIRT, 2); px(cx, baseY-12, SHIRT, 10); px(cx+10, baseY-12, SHIRT, 2);
+    px(cx-2, baseY-11, SHIRT, 2); px(cx, baseY-11, SHIRT, 10); px(cx+10, baseY-11, SHIRT, 2);
+    // Belt + arms as sleeve
+    px(cx-2, baseY-10, SHIRT, 2); px(cx, baseY-10, '#7a4820', 10); px(cx+10, baseY-10, SHIRT, 2);
+    // Sleeve continues 2 rows into pants area, then hands
+    px(cx-2, baseY-9,  SHIRT, 2); px(cx, baseY-9,  PANTS, 10); px(cx+10, baseY-9,  SHIRT, 2);
+    px(cx-2, baseY-8,  SKIN,  2); px(cx, baseY-8,  PANTS, 10); px(cx+10, baseY-8,  SKIN,  2);
     // Pants upper
-    px(cx,   baseY-5,  PANTS, 10);
-    px(cx,   baseY-4,  PANTS, 10);
-    // Legs split (4px each, 2px gap)
+    px(cx,   baseY-7,  PANTS, 10);
+    px(cx,   baseY-6,  PANTS, 10);
+    // Legs split (4px each, 2px gap, 4 rows)
+    px(cx,   baseY-5,  PANTS, 4); px(cx+6, baseY-5, PANTS, 4);
+    px(cx,   baseY-4,  PANTS, 4); px(cx+6, baseY-4, PANTS, 4);
     px(cx,   baseY-3,  PANTS, 4); px(cx+6, baseY-3, PANTS, 4);
     px(cx,   baseY-2,  PANTS, 4); px(cx+6, baseY-2, PANTS, 4);
     // Shoes (2 rows, frame-dependent)
