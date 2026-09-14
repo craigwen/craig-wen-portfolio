@@ -162,14 +162,19 @@
 
   // === TRAFFIC CONES ===
   function drawCone(cx, cy) {
-    px(cx+2, cy,   '#ff7733', 1);      // tip
-    px(cx+1, cy+1, '#ff7733', 3);      // row 1: 3px, no shadow
-    px(cx,   cy+2, '#ffe066', 5);      // row 2: full-width reflective band
-    px(cx,   cy+3, '#ff7733', 4);      // row 3: 4px body
-    px(cx+4, cy+3, '#b83c20', 1);      // shadow
-    px(cx,   cy+4, '#ff7733', 4, 2);   // rows 4-5: 4px body
-    px(cx+4, cy+4, '#b83c20', 1, 2);   // shadow
-    px(cx-1, cy+6, '#3d2510', 7, 2);   // base: 7px wide (flared foot)
+    px(cx+4, cy,   '#ffaa77', 1);
+    px(cx+3, cy+1, '#ffaa77', 1);
+    px(cx+4, cy+1, '#ff7733', 1);
+    px(cx+5, cy+1, '#cc5520', 1);
+    px(cx+2, cy+2, '#ffe8d8', 5);
+    px(cx+1, cy+3, '#ffaa77', 1);
+    px(cx+2, cy+3, '#ff7733', 5);
+    px(cx+7, cy+3, '#cc5520', 1);
+    px(cx+1, cy+4, '#ffe8d8', 7);
+    px(cx,   cy+5, '#ffaa77', 1);
+    px(cx+1, cy+5, '#ff7733', 7);
+    px(cx+8, cy+5, '#cc5520', 1);
+    px(cx-1, cy+6, '#5a3015', 11, 2);
   }
 
   drawCone(14, 24);
