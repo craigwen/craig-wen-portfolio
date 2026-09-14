@@ -69,6 +69,10 @@
 
   #bubble a { color: #ff7733; text-decoration: none; }
   #bubble a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 600px) {
+    body { justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -87,7 +91,7 @@
   var bubble   = document.getElementById('bubble');
   var dialogue = document.getElementById('dialogue');
 
-  var GW = 192, GH = 80;
+  var GW = 192, GH = 96;
   canvas.width  = GW;
   canvas.height = GH;
 
@@ -125,16 +129,16 @@
   }
 
   function drawCone(cx, cy) {
-    px(cx+6,  cy,    '#ffaa77', 2);
-    px(cx+6,  cy+2,  '#ff9966', 2);
-    px(cx+4,  cy+4,  '#ffe8d8', 6);
-    px(cx+2,  cy+6,  '#ffaa77', 2); px(cx+4,  cy+6,  '#ff7733', 6); px(cx+10, cy+6,  '#cc5520', 2);
-    px(cx+2,  cy+8,  '#ffaa77', 2); px(cx+4,  cy+8,  '#ff7733', 6); px(cx+10, cy+8,  '#cc5520', 2);
-    px(cx+2,  cy+10, '#ffe8d8', 10);
-    px(cx,    cy+12, '#ffaa77', 2); px(cx+2,  cy+12, '#ff7733', 10); px(cx+12, cy+12, '#cc5520', 2);
-    px(cx,    cy+14, '#ffaa77', 2); px(cx+2,  cy+14, '#ff7733', 10); px(cx+12, cy+14, '#cc5520', 2);
-    px(cx,    cy+16, '#ffe8d8', 14);
-    px(cx,    cy+18, '#ffaa77', 2); px(cx+2,  cy+18, '#ff7733', 10); px(cx+12, cy+18, '#cc5520', 2);
+    px(cx+6,  cy,    '#ffaa77', 2, 2);
+    px(cx+6,  cy+2,  '#ff9966', 2, 2);
+    px(cx+4,  cy+4,  '#ffe8d8', 6, 2);
+    px(cx+2,  cy+6,  '#ffaa77', 2, 2); px(cx+4,  cy+6,  '#ff7733', 6, 2); px(cx+10, cy+6,  '#cc5520', 2, 2);
+    px(cx+2,  cy+8,  '#ffaa77', 2, 2); px(cx+4,  cy+8,  '#ff7733', 6, 2); px(cx+10, cy+8,  '#cc5520', 2, 2);
+    px(cx+2,  cy+10, '#ffe8d8', 10, 2);
+    px(cx,    cy+12, '#ffaa77', 2, 2); px(cx+2,  cy+12, '#ff7733', 10, 2); px(cx+12, cy+12, '#cc5520', 2, 2);
+    px(cx,    cy+14, '#ffaa77', 2, 2); px(cx+2,  cy+14, '#ff7733', 10, 2); px(cx+12, cy+14, '#cc5520', 2, 2);
+    px(cx,    cy+16, '#ffe8d8', 14, 2);
+    px(cx,    cy+18, '#ffaa77', 2, 2); px(cx+2,  cy+18, '#ff7733', 10, 2); px(cx+12, cy+18, '#cc5520', 2, 2);
     px(cx-2,  cy+20, '#5a3015', 18, 4);
   }
 
@@ -152,8 +156,8 @@
       [4,16],[14,12],[24,20],[34,14],[50,12],[66,18],[80,16],[96,20],[112,16],[126,22],[142,18],[160,14],[176,16],
       [8,28],[20,24],[30,32],[40,28],[56,24],[74,30],[90,26],[106,32],[122,26],[140,32],[156,28],[174,22],[188,26],
       [2,40],[16,44],[26,38],[38,42],[54,38],[70,44],[88,40],[104,46],[122,42],[138,38],[156,44],[172,40]
-    ].forEach(function(s) { px(s[0], s[1], '#e0d0f8'); });
-    [[18,8],[64,8],[100,2],[112,16],[88,40]].forEach(function(s) { px(s[0], s[1], '#ffffff'); });
+    ].forEach(function(s) { px(s[0], s[1], '#e0d0f8', 2, 2); });
+    [[18,8],[64,8],[100,2],[112,16],[88,40]].forEach(function(s) { px(s[0], s[1], '#ffffff', 2, 2); });
 
     // Moon
     px(180, 2, '#fff4b0', 6, 6);
@@ -188,53 +192,53 @@
   var SHOE  = '#1a0d05';
 
   function drawCharacter(cx, baseY, frame) {
-    // Hair dome (4 rows, 20px wide)
-    px(cx+4, baseY-50, HAIR, 12);
-    px(cx+2, baseY-48, HAIR, 16);
-    px(cx,   baseY-46, HAIR, 20);
-    px(cx,   baseY-44, HAIR, 20);
-    // BIG FACE (20px wide, 16 rows)
-    px(cx, baseY-42, SKIN, 20);
+    // Hair dome
+    px(cx+4, baseY-50, HAIR, 12, 2);
+    px(cx+2, baseY-48, HAIR, 16, 2);
+    px(cx,   baseY-46, HAIR, 20, 2);
+    px(cx,   baseY-44, HAIR, 20, 2);
+    // Forehead
+    px(cx, baseY-42, SKIN, 20, 2);
     // Eyebrows
-    px(cx, baseY-40, SKIN, 20);
-    px(cx+2,  baseY-40, '#5a3010', 4);
-    px(cx+14, baseY-40, '#5a3010', 4);
+    px(cx,    baseY-40, SKIN, 20, 2);
+    px(cx+2,  baseY-40, '#5a3010', 4, 2);
+    px(cx+14, baseY-40, '#5a3010', 4, 2);
     // Eye shines
-    px(cx, baseY-38, SKIN, 20);
-    px(cx+4,  baseY-38, '#ffffd8', 2);
-    px(cx+14, baseY-38, '#ffffd8', 2);
+    px(cx,    baseY-38, SKIN, 20, 2);
+    px(cx+4,  baseY-38, '#ffffd8', 2, 2);
+    px(cx+14, baseY-38, '#ffffd8', 2, 2);
     // Pupils
-    px(cx, baseY-36, SKIN, 20);
-    px(cx+2,  baseY-36, '#1a0d05', 4);
-    px(cx+14, baseY-36, '#1a0d05', 4);
+    px(cx,    baseY-36, SKIN, 20, 2);
+    px(cx+2,  baseY-36, '#1a0d05', 4, 2);
+    px(cx+14, baseY-36, '#1a0d05', 4, 2);
     // Nose
-    px(cx, baseY-34, SKIN, 20);
-    px(cx+8, baseY-34, '#d09060', 2);
+    px(cx,   baseY-34, SKIN, 20, 2);
+    px(cx+8, baseY-34, '#d09060', 2, 2);
     // Upper lip
-    px(cx, baseY-32, SKIN, 20);
+    px(cx, baseY-32, SKIN, 20, 2);
     // Mouth
-    px(cx, baseY-30, SKIN, 20);
-    px(cx+6, baseY-30, '#8b3010', 6);
+    px(cx,   baseY-30, SKIN, 20, 2);
+    px(cx+6, baseY-30, '#8b3010', 6, 2);
     // Chin
-    px(cx, baseY-28, SKIN, 20);
+    px(cx, baseY-28, SKIN, 20, 2);
     // Neck
-    px(cx+6, baseY-26, SKIN, 8);
-    // Shirt (shoulders + 3 arm rows each 2px tall)
-    px(cx,   baseY-24, SHIRT, 20);
-    px(cx-4, baseY-22, SHIRT, 4); px(cx, baseY-22, SHIRT, 20); px(cx+20, baseY-22, SHIRT, 4);
-    px(cx-4, baseY-20, SHIRT, 4); px(cx, baseY-20, SHIRT, 20); px(cx+20, baseY-20, SHIRT, 4);
-    px(cx-4, baseY-18, SHIRT, 4); px(cx, baseY-18, SHIRT, 20); px(cx+20, baseY-18, SHIRT, 4);
+    px(cx+6, baseY-26, SKIN, 8, 2);
+    // Shirt shoulders
+    px(cx,   baseY-24, SHIRT, 20, 2);
+    px(cx-4, baseY-22, SHIRT, 4, 2); px(cx, baseY-22, SHIRT, 20, 2); px(cx+20, baseY-22, SHIRT, 4, 2);
+    px(cx-4, baseY-20, SHIRT, 4, 2); px(cx, baseY-20, SHIRT, 20, 2); px(cx+20, baseY-20, SHIRT, 4, 2);
+    px(cx-4, baseY-18, SHIRT, 4, 2); px(cx, baseY-18, SHIRT, 20, 2); px(cx+20, baseY-18, SHIRT, 4, 2);
     // Belt + sleeve
-    px(cx-4, baseY-16, SHIRT, 4); px(cx, baseY-16, '#7a4820', 20); px(cx+20, baseY-16, SHIRT, 4);
-    // Sleeve into pants, then hands
-    px(cx-4, baseY-14, SHIRT, 4); px(cx, baseY-14, PANTS, 20); px(cx+20, baseY-14, SHIRT, 4);
-    px(cx-4, baseY-12, SKIN,  4); px(cx, baseY-12, PANTS, 20); px(cx+20, baseY-12, SKIN,  4);
-    px(cx,   baseY-10, PANTS, 20);
-    // Legs split (3 pairs of rows)
-    px(cx, baseY-8, PANTS, 8); px(cx+12, baseY-8, PANTS, 8);
-    px(cx, baseY-6, PANTS, 8); px(cx+12, baseY-6, PANTS, 8);
-    px(cx, baseY-4, PANTS, 8); px(cx+12, baseY-4, PANTS, 8);
-    // Shoes (4 rows, frame-dependent)
+    px(cx-4, baseY-16, SHIRT, 4, 2); px(cx, baseY-16, '#7a4820', 20, 2); px(cx+20, baseY-16, SHIRT, 4, 2);
+    // Pants waist + hands
+    px(cx-4, baseY-14, SHIRT, 4, 2); px(cx, baseY-14, PANTS, 20, 2); px(cx+20, baseY-14, SHIRT, 4, 2);
+    px(cx-4, baseY-12, SKIN,  4, 2); px(cx, baseY-12, PANTS, 20, 2); px(cx+20, baseY-12, SKIN,  4, 2);
+    px(cx,   baseY-10, PANTS, 20, 2);
+    // Legs split
+    px(cx, baseY-8, PANTS, 8, 2); px(cx+12, baseY-8, PANTS, 8, 2);
+    px(cx, baseY-6, PANTS, 8, 2); px(cx+12, baseY-6, PANTS, 8, 2);
+    px(cx, baseY-4, PANTS, 8, 2); px(cx+12, baseY-4, PANTS, 8, 2);
+    // Shoes
     if (frame === 0) {
       px(cx-2, baseY-2, SHOE, 10, 4); px(cx+12, baseY-2, SHOE, 10, 4);
     } else if (frame === 1) {
