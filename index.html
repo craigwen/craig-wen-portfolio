@@ -36,9 +36,9 @@
 
   #bubble {
     position: absolute;
-    left: 7%;
-    top: 4%;
-    max-width: 55%;
+    left: 5%;
+    bottom: 73%;
+    max-width: 60%;
     background: #fef0d9;
     border: 3px solid #1a0d05;
     padding: 0.6em 0.9em;
@@ -51,19 +51,19 @@
   #bubble::after {
     content: '';
     position: absolute;
-    bottom: -11px; left: 16px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 11px solid #1a0d05;
+    bottom: -14px; left: 14px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 14px solid #1a0d05;
   }
 
   #bubble::before {
     content: '';
     position: absolute;
-    bottom: -6px; left: 19px;
+    bottom: -9px; left: 17px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 6px solid #fef0d9;
+    border-top: 9px solid #fef0d9;
     z-index: 1;
   }
 
@@ -188,25 +188,28 @@
   var SHOE  = '#1a0d05';
 
   function drawCharacter(cx, baseY, frame) {
-    px(cx+1, baseY-9, HAIR,  2);      // hair top
-    px(cx,   baseY-8, HAIR,  4);      // hair
-    px(cx,   baseY-7, SKIN,  4);      // face
-    px(cx+1, baseY-6, SKIN,  2);      // neck
-    px(cx,   baseY-5, SHIRT, 4);      // shirt
-    px(cx,   baseY-4, SHIRT, 4);
-    px(cx,   baseY-3, HAIR,  4);      // belt
-    px(cx,   baseY-2, PANTS, 4);      // pants
-    px(cx,   baseY-1, PANTS, 4);
-    // feet
+    px(cx+2, baseY-17, HAIR,  4);
+    px(cx+1, baseY-16, HAIR,  6);
+    px(cx+1, baseY-15, SKIN,  6);
+    px(cx+1, baseY-14, SKIN,  6);
+    px(cx+3, baseY-13, SKIN,  2);
+    px(cx,   baseY-12, SHIRT, 8);
+    px(cx,   baseY-11, SHIRT, 8);
+    px(cx,   baseY-10, SHIRT, 8);
+    px(cx,   baseY-9,  SHIRT, 8);
+    px(cx,   baseY-8,  HAIR,  8);
+    px(cx,   baseY-7,  PANTS, 8);
+    px(cx,   baseY-6,  PANTS, 8);
+    px(cx,   baseY-5,  PANTS, 8);
+    px(cx,   baseY-4,  PANTS, 3); px(cx+5, baseY-4, PANTS, 3);
+    px(cx,   baseY-3,  PANTS, 3); px(cx+5, baseY-3, PANTS, 3);
+    px(cx,   baseY-2,  PANTS, 3); px(cx+5, baseY-2, PANTS, 3);
     if (frame === 0) {
-      px(cx,   baseY, SHOE, 2);       // standing: feet together
-      px(cx+2, baseY, SHOE, 2);
+      px(cx,   baseY-1, SHOE, 3); px(cx+5, baseY-1, SHOE, 3);
     } else if (frame === 1) {
-      px(cx-1, baseY, SHOE, 2);       // walk A: left foot forward
-      px(cx+2, baseY, SHOE, 2);
+      px(cx-1, baseY-1, SHOE, 4); px(cx+5, baseY-1, SHOE, 3);
     } else {
-      px(cx,   baseY, SHOE, 2);       // walk B: right foot forward
-      px(cx+3, baseY, SHOE, 2);
+      px(cx,   baseY-1, SHOE, 3); px(cx+6, baseY-1, SHOE, 4);
     }
   }
 
@@ -217,8 +220,8 @@
   // === ANIMATION ===
   var startTime = null;
   var WALK_MS   = 1000;
-  var START_X   = -5;
-  var END_X     = 8;
+  var START_X   = -10;
+  var END_X     = 4;
   var CHAR_Y    = 29;
   var walkDone  = false;
 
