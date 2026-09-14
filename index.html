@@ -162,23 +162,21 @@
 
   // === TRAFFIC CONES ===
   function drawCone(cx, cy) {
-    px(cx+4, cy,   '#ffaa77', 1);
-    px(cx+3, cy+1, '#ffaa77', 1);
-    px(cx+4, cy+1, '#ff7733', 1);
-    px(cx+5, cy+1, '#cc5520', 1);
-    px(cx+2, cy+2, '#ffe8d8', 5);
-    px(cx+1, cy+3, '#ffaa77', 1);
-    px(cx+2, cy+3, '#ff7733', 5);
-    px(cx+7, cy+3, '#cc5520', 1);
-    px(cx+1, cy+4, '#ffe8d8', 7);
-    px(cx,   cy+5, '#ffaa77', 1);
-    px(cx+1, cy+5, '#ff7733', 7);
-    px(cx+8, cy+5, '#cc5520', 1);
-    px(cx-1, cy+6, '#5a3015', 11, 2);
+    px(cx+3, cy,   '#ffaa77', 1);
+    px(cx+3, cy+1, '#ff9966', 1);
+    px(cx+2, cy+2, '#ffe8d8', 3);
+    px(cx+1, cy+3, '#ffaa77', 1); px(cx+2, cy+3, '#ff7733', 3); px(cx+5, cy+3, '#cc5520', 1);
+    px(cx+1, cy+4, '#ffaa77', 1); px(cx+2, cy+4, '#ff7733', 3); px(cx+5, cy+4, '#cc5520', 1);
+    px(cx+1, cy+5, '#ffe8d8', 5);
+    px(cx,   cy+6, '#ffaa77', 1); px(cx+1, cy+6, '#ff7733', 5); px(cx+6, cy+6, '#cc5520', 1);
+    px(cx,   cy+7, '#ffaa77', 1); px(cx+1, cy+7, '#ff7733', 5); px(cx+6, cy+7, '#cc5520', 1);
+    px(cx,   cy+8, '#ffe8d8', 7);
+    px(cx,   cy+9, '#ffaa77', 1); px(cx+1, cy+9, '#ff7733', 5); px(cx+6, cy+9, '#cc5520', 1);
+    px(cx-1, cy+10, '#5a3015', 9, 2);
   }
 
-  drawCone(14, 24);
-  drawCone(78, 24);
+  drawCone(14, 20);
+  drawCone(78, 20);
 
   // === ROAD DASHES ===
   for (var dx = 0; dx < GW; dx += 9) {
