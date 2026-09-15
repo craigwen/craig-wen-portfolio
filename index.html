@@ -185,59 +185,86 @@
   }
 
   // === CHARACTER (Craig) ===
-  var HAIR  = '#1a0d05';
-  var SKIN  = '#f0b87a';
-  var SHIRT = '#3d5a7a';
-  var PANTS = '#2a3a4a';
-  var SHOE  = '#1a0d05';
+  var HAIR       = '#1a0d05';
+  var SKIN       = '#f0c090';
+  var JACKET     = '#4a7040';
+  var UNDERSHIRT = '#e0cfb0';
+  var PANTS      = '#a89870';
+  var SHOE       = '#5a2818';
 
-  function drawCharacter(cx, baseY, frame) {
-    // Hair dome (15px wide)
+  function drawCharacter(cx, baseY, frame, talkFrame) {
+    // Right raised arm (drawn first so face/hair pixels win on any overlap)
+    px(cx+15, baseY-24, JACKET, 3, 2);
+    px(cx+15, baseY-26, JACKET, 3, 2);
+    px(cx+15, baseY-28, JACKET, 3, 2);
+    px(cx+15, baseY-30, JACKET, 3, 2);
+    px(cx+15, baseY-32, JACKET, 3, 2);
+    px(cx+15, baseY-34, JACKET, 3, 2);
+    px(cx+15, baseY-36, JACKET, 3, 2);
+    px(cx+15, baseY-38, JACKET, 3, 2);
+    px(cx+15, baseY-40, JACKET, 3, 2);
+    px(cx+15, baseY-42, SKIN,   3, 2);
+    px(cx+15, baseY-44, SKIN,   3, 2);
+    // Hair dome
     px(cx+3, baseY-50, HAIR, 9,  2);
     px(cx+1, baseY-48, HAIR, 13, 2);
     px(cx,   baseY-46, HAIR, 15, 2);
     px(cx,   baseY-44, HAIR, 15, 2);
     // Forehead
     px(cx, baseY-42, SKIN, 15, 2);
-    // Eyebrows
-    px(cx,    baseY-40, SKIN, 15, 2);
-    px(cx+1,  baseY-40, '#5a3010', 3, 2);
-    px(cx+11, baseY-40, '#5a3010', 3, 2);
-    // Eyes top: sclera with shine
-    px(cx,    baseY-38, SKIN, 15, 2);
-    px(cx+1,  baseY-38, '#fef0d0', 4, 2);
-    px(cx+10, baseY-38, '#fef0d0', 4, 2);
-    px(cx+3,  baseY-38, '#ffffd8', 1, 2);
-    px(cx+12, baseY-38, '#ffffd8', 1, 2);
-    // Eyes bottom: pupils
-    px(cx,    baseY-36, SKIN, 15, 2);
-    px(cx+1,  baseY-36, '#1a0d05', 4, 2);
-    px(cx+10, baseY-36, '#1a0d05', 4, 2);
-    // Nose (two nostril dots)
-    px(cx,   baseY-34, SKIN, 15, 2);
-    px(cx+5, baseY-34, '#c08050', 2, 2);
-    px(cx+8, baseY-34, '#c08050', 2, 2);
+    // Sunglasses
+    px(cx,   baseY-40, SKIN,      15, 2);
+    px(cx+1, baseY-40, '#1a1428', 13, 2);
+    px(cx+2, baseY-40, '#2e2850',  2, 2);
+    px(cx,   baseY-38, SKIN,      15, 2);
+    px(cx+1, baseY-38, '#1a1428', 13, 2);
+    // Under-glasses bridge
+    px(cx, baseY-36, SKIN, 15, 2);
+    // Nose
+    px(cx,   baseY-34, SKIN,      15, 2);
+    px(cx+5, baseY-34, '#c08050',  2, 2);
+    px(cx+8, baseY-34, '#c08050',  2, 2);
     // Upper lip
     px(cx, baseY-32, SKIN, 15, 2);
-    // Mouth
-    px(cx,   baseY-30, SKIN, 15, 2);
-    px(cx+4, baseY-30, '#8b3010', 7, 2);
+    // Mouth (talkFrame: 0=closed, 1=open)
+    px(cx, baseY-30, SKIN, 15, 2);
+    if (talkFrame === 1) {
+      px(cx+4, baseY-30, '#c06030', 7, 1);
+      px(cx+4, baseY-29, '#2a0808', 7, 1);
+    } else {
+      px(cx+4, baseY-30, '#8b3010', 7, 2);
+    }
     // Chin
     px(cx, baseY-28, SKIN, 15, 2);
     // Neck
     px(cx+4, baseY-26, SKIN, 6, 2);
-    // Shirt shoulders
-    px(cx,   baseY-24, SHIRT, 15, 2);
-    px(cx-3, baseY-22, SHIRT, 3, 2); px(cx, baseY-22, SHIRT, 15, 2); px(cx+15, baseY-22, SHIRT, 3, 2);
-    px(cx-3, baseY-20, SHIRT, 3, 2); px(cx, baseY-20, SHIRT, 15, 2); px(cx+15, baseY-20, SHIRT, 3, 2);
-    px(cx-3, baseY-18, SHIRT, 3, 2); px(cx, baseY-18, SHIRT, 15, 2); px(cx+15, baseY-18, SHIRT, 3, 2);
-    // Belt + sleeve
-    px(cx-3, baseY-16, SHIRT, 3, 2); px(cx, baseY-16, '#7a4820', 15, 2); px(cx+15, baseY-16, SHIRT, 3, 2);
-    // Pants waist + hands
-    px(cx-3, baseY-14, SHIRT, 3, 2); px(cx, baseY-14, PANTS, 15, 2); px(cx+15, baseY-14, SHIRT, 3, 2);
-    px(cx-3, baseY-12, SKIN,  3, 2); px(cx, baseY-12, PANTS, 15, 2); px(cx+15, baseY-12, SKIN,  3, 2);
-    px(cx,   baseY-10, PANTS, 15, 2);
-    // Legs split (6px each)
+    // Shoulders
+    px(cx, baseY-24, JACKET, 15, 2);
+    // Body: left hanging arm + open jacket + undershirt center
+    px(cx-3,  baseY-22, JACKET,     3, 2);
+    px(cx,    baseY-22, JACKET,     4, 2);
+    px(cx+4,  baseY-22, UNDERSHIRT, 7, 2);
+    px(cx+11, baseY-22, JACKET,     4, 2);
+    px(cx-3,  baseY-20, JACKET,     3, 2);
+    px(cx,    baseY-20, JACKET,     4, 2);
+    px(cx+4,  baseY-20, UNDERSHIRT, 7, 2);
+    px(cx+11, baseY-20, JACKET,     4, 2);
+    px(cx-3,  baseY-18, JACKET,     3, 2);
+    px(cx,    baseY-18, JACKET,     4, 2);
+    px(cx+4,  baseY-18, UNDERSHIRT, 7, 2);
+    px(cx+11, baseY-18, JACKET,     4, 2);
+    // Belt
+    px(cx-3, baseY-16, JACKET,    3, 2);
+    px(cx,   baseY-16, '#7a4820', 15, 2);
+    // Waist
+    px(cx-3, baseY-14, JACKET, 3, 2);
+    px(cx,   baseY-14, PANTS,  15, 2);
+    // Hips + left hand
+    px(cx-3, baseY-12, SKIN,  3, 2);
+    px(cx,   baseY-12, PANTS, 15, 2);
+    // Lower torso
+    px(cx, baseY-10, PANTS, 15, 2);
+    // Legs
     px(cx, baseY-8, PANTS, 6, 2); px(cx+9, baseY-8, PANTS, 6, 2);
     px(cx, baseY-6, PANTS, 6, 2); px(cx+9, baseY-6, PANTS, 6, 2);
     px(cx, baseY-4, PANTS, 6, 2); px(cx+9, baseY-4, PANTS, 6, 2);
@@ -261,7 +288,9 @@
   var START_X   = -30;
   var END_X     = 4;
   var CHAR_Y    = 62;
-  var walkDone  = false;
+  var walkDone     = false;
+  var talkFrame    = 0;
+  var talkInterval = null;
 
   function showBubble() {
     var plain = "I'm giving my portfolio a much needed overhaul. For now, find me on ";
@@ -269,11 +298,20 @@
     var full  = plain + link;
     var i     = 0;
     bubble.hidden = false;
+    talkInterval = setInterval(function() {
+      talkFrame = talkFrame === 0 ? 1 : 0;
+      ctx.putImageData(bgData, 0, 0);
+      drawCharacter(END_X, CHAR_Y, 0, talkFrame);
+    }, 160);
     (function type() {
       dialogue.textContent = full.slice(0, ++i);
       if (i < full.length) {
         setTimeout(type, 40);
       } else {
+        clearInterval(talkInterval);
+        talkFrame = 0;
+        ctx.putImageData(bgData, 0, 0);
+        drawCharacter(END_X, CHAR_Y, 0, 0);
         dialogue.innerHTML = plain +
           '<a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>';
       }
@@ -300,7 +338,7 @@
       }
     }
 
-    drawCharacter(charX, CHAR_Y, frame);
+    drawCharacter(charX, CHAR_Y, frame, 0);
 
     if (!walkDone) requestAnimationFrame(animate);
   }
