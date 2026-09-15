@@ -192,59 +192,62 @@
   var SHOE  = '#1a0d05';
 
   function drawCharacter(cx, baseY, frame) {
-    // Hair dome
-    px(cx+4, baseY-50, HAIR, 12, 2);
-    px(cx+2, baseY-48, HAIR, 16, 2);
-    px(cx,   baseY-46, HAIR, 20, 2);
-    px(cx,   baseY-44, HAIR, 20, 2);
+    // Hair dome (15px wide)
+    px(cx+3, baseY-50, HAIR, 9,  2);
+    px(cx+1, baseY-48, HAIR, 13, 2);
+    px(cx,   baseY-46, HAIR, 15, 2);
+    px(cx,   baseY-44, HAIR, 15, 2);
     // Forehead
-    px(cx, baseY-42, SKIN, 20, 2);
+    px(cx, baseY-42, SKIN, 15, 2);
     // Eyebrows
-    px(cx,    baseY-40, SKIN, 20, 2);
-    px(cx+2,  baseY-40, '#5a3010', 4, 2);
-    px(cx+14, baseY-40, '#5a3010', 4, 2);
-    // Eye shines
-    px(cx,    baseY-38, SKIN, 20, 2);
-    px(cx+4,  baseY-38, '#ffffd8', 2, 2);
-    px(cx+14, baseY-38, '#ffffd8', 2, 2);
-    // Pupils
-    px(cx,    baseY-36, SKIN, 20, 2);
-    px(cx+2,  baseY-36, '#1a0d05', 4, 2);
-    px(cx+14, baseY-36, '#1a0d05', 4, 2);
-    // Nose
-    px(cx,   baseY-34, SKIN, 20, 2);
-    px(cx+8, baseY-34, '#d09060', 2, 2);
+    px(cx,    baseY-40, SKIN, 15, 2);
+    px(cx+1,  baseY-40, '#5a3010', 3, 2);
+    px(cx+11, baseY-40, '#5a3010', 3, 2);
+    // Eyes top: sclera with shine
+    px(cx,    baseY-38, SKIN, 15, 2);
+    px(cx+1,  baseY-38, '#fef0d0', 4, 2);
+    px(cx+10, baseY-38, '#fef0d0', 4, 2);
+    px(cx+3,  baseY-38, '#ffffd8', 1, 2);
+    px(cx+12, baseY-38, '#ffffd8', 1, 2);
+    // Eyes bottom: pupils
+    px(cx,    baseY-36, SKIN, 15, 2);
+    px(cx+1,  baseY-36, '#1a0d05', 4, 2);
+    px(cx+10, baseY-36, '#1a0d05', 4, 2);
+    // Nose (two nostril dots)
+    px(cx,   baseY-34, SKIN, 15, 2);
+    px(cx+5, baseY-34, '#c08050', 2, 2);
+    px(cx+8, baseY-34, '#c08050', 2, 2);
     // Upper lip
-    px(cx, baseY-32, SKIN, 20, 2);
+    px(cx, baseY-32, SKIN, 15, 2);
     // Mouth
-    px(cx,   baseY-30, SKIN, 20, 2);
-    px(cx+6, baseY-30, '#8b3010', 6, 2);
+    px(cx,   baseY-30, SKIN, 15, 2);
+    px(cx+4, baseY-30, '#8b3010', 7, 2);
     // Chin
-    px(cx, baseY-28, SKIN, 20, 2);
+    px(cx, baseY-28, SKIN, 15, 2);
     // Neck
-    px(cx+6, baseY-26, SKIN, 8, 2);
+    px(cx+4, baseY-26, SKIN, 6, 2);
     // Shirt shoulders
-    px(cx,   baseY-24, SHIRT, 20, 2);
-    px(cx-4, baseY-22, SHIRT, 4, 2); px(cx, baseY-22, SHIRT, 20, 2); px(cx+20, baseY-22, SHIRT, 4, 2);
-    px(cx-4, baseY-20, SHIRT, 4, 2); px(cx, baseY-20, SHIRT, 20, 2); px(cx+20, baseY-20, SHIRT, 4, 2);
-    px(cx-4, baseY-18, SHIRT, 4, 2); px(cx, baseY-18, SHIRT, 20, 2); px(cx+20, baseY-18, SHIRT, 4, 2);
+    px(cx,   baseY-24, SHIRT, 15, 2);
+    px(cx-3, baseY-22, SHIRT, 3, 2); px(cx, baseY-22, SHIRT, 15, 2); px(cx+15, baseY-22, SHIRT, 3, 2);
+    px(cx-3, baseY-20, SHIRT, 3, 2); px(cx, baseY-20, SHIRT, 15, 2); px(cx+15, baseY-20, SHIRT, 3, 2);
+    px(cx-3, baseY-18, SHIRT, 3, 2); px(cx, baseY-18, SHIRT, 15, 2); px(cx+15, baseY-18, SHIRT, 3, 2);
     // Belt + sleeve
-    px(cx-4, baseY-16, SHIRT, 4, 2); px(cx, baseY-16, '#7a4820', 20, 2); px(cx+20, baseY-16, SHIRT, 4, 2);
+    px(cx-3, baseY-16, SHIRT, 3, 2); px(cx, baseY-16, '#7a4820', 15, 2); px(cx+15, baseY-16, SHIRT, 3, 2);
     // Pants waist + hands
-    px(cx-4, baseY-14, SHIRT, 4, 2); px(cx, baseY-14, PANTS, 20, 2); px(cx+20, baseY-14, SHIRT, 4, 2);
-    px(cx-4, baseY-12, SKIN,  4, 2); px(cx, baseY-12, PANTS, 20, 2); px(cx+20, baseY-12, SKIN,  4, 2);
-    px(cx,   baseY-10, PANTS, 20, 2);
-    // Legs split
-    px(cx, baseY-8, PANTS, 8, 2); px(cx+12, baseY-8, PANTS, 8, 2);
-    px(cx, baseY-6, PANTS, 8, 2); px(cx+12, baseY-6, PANTS, 8, 2);
-    px(cx, baseY-4, PANTS, 8, 2); px(cx+12, baseY-4, PANTS, 8, 2);
+    px(cx-3, baseY-14, SHIRT, 3, 2); px(cx, baseY-14, PANTS, 15, 2); px(cx+15, baseY-14, SHIRT, 3, 2);
+    px(cx-3, baseY-12, SKIN,  3, 2); px(cx, baseY-12, PANTS, 15, 2); px(cx+15, baseY-12, SKIN,  3, 2);
+    px(cx,   baseY-10, PANTS, 15, 2);
+    // Legs split (6px each)
+    px(cx, baseY-8, PANTS, 6, 2); px(cx+9, baseY-8, PANTS, 6, 2);
+    px(cx, baseY-6, PANTS, 6, 2); px(cx+9, baseY-6, PANTS, 6, 2);
+    px(cx, baseY-4, PANTS, 6, 2); px(cx+9, baseY-4, PANTS, 6, 2);
     // Shoes
     if (frame === 0) {
-      px(cx-2, baseY-2, SHOE, 10, 4); px(cx+12, baseY-2, SHOE, 10, 4);
+      px(cx-1, baseY-2, SHOE, 8, 4); px(cx+9, baseY-2, SHOE, 8, 4);
     } else if (frame === 1) {
-      px(cx-4, baseY-2, SHOE, 12, 4); px(cx+12, baseY-2, SHOE, 8, 4);
+      px(cx-2, baseY-2, SHOE, 9, 4); px(cx+9, baseY-2, SHOE, 7, 4);
     } else {
-      px(cx-2, baseY-2, SHOE, 8, 4); px(cx+12, baseY-2, SHOE, 12, 4);
+      px(cx-1, baseY-2, SHOE, 7, 4); px(cx+9, baseY-2, SHOE, 9, 4);
     }
   }
 
