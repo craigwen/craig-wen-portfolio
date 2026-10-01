@@ -18,16 +18,16 @@
     --dim: #3f9a55;
   }
 
-  html, body { height: 100%; }
+  html { height: 100%; }
 
   body {
+    min-height: 100%;
     background: var(--bg);
     color: var(--fg);
     font-family: 'VT323', 'Courier New', monospace;
     font-size: clamp(1.25rem, 2.6vw, 1.75rem);
     line-height: 1.35;
     display: flex;
-    align-items: center;
     justify-content: center;
     padding-inline: 16px;
     text-shadow: 0 0 6px rgba(125, 255, 154, 0.35);
@@ -36,6 +36,8 @@
   main {
     width: min(100%, 38ch);
     min-width: 0;
+    margin-block: auto;
+    padding-block: 2em;
     display: grid;
     gap: 1.1em;
   }
@@ -57,7 +59,6 @@
   h1 {
     font-size: inherit;
     font-weight: normal;
-    text-transform: uppercase;
   }
 
   a {
@@ -73,14 +74,36 @@
     outline: none;
   }
 
+  #log { display: grid; gap: 1.1em; }
+  #log:empty { display: none; }
+
+  form {
+    display: flex;
+    gap: 1ch;
+  }
+
+  #cmd {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: var(--fg);
+    caret-color: var(--fg);
+    caret-shape: block;
+    font: inherit;
+    text-shadow: inherit;
+  }
+
   .cursor {
-    display: inline-block;
     width: 0.6em;
     height: 1em;
+    align-self: center;
     background: var(--fg);
-    vertical-align: -0.15em;
     animation: blink 1s steps(1) infinite;
   }
+  form:has(#cmd:focus) .cursor,
+  form:has(#cmd:not(:placeholder-shown)) .cursor { display: none; }
   @keyframes blink { 50% { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
     .cursor { animation: none; }
@@ -92,18 +115,93 @@
 <main>
   <div class="status" aria-hidden="true">
     <span>Craig Wen</span>
-    <span>Moves: 1</span>
+    <span>Moves: <span id="moves">1</span></span>
   </div>
 
   <p class="cmd">&gt; LOOK</p>
 
   <div>
-    <h1>Portfolio, Under Renovation</h1>
+    <h1>craigwen.com</h1>
     <p>I'm giving my portfolio a much needed overhaul. For now, find me on <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>.</p>
   </div>
 
-  <p aria-hidden="true">&gt; <span class="cursor"></span></p>
+  <div id="log" aria-live="polite"></div>
+
+  <form id="prompt" autocomplete="off">
+    <label for="cmd" aria-hidden="true">&gt;</label>
+    <span class="cursor" aria-hidden="true"></span>
+    <input id="cmd" type="text" placeholder=" " maxlength="80" spellcheck="false" autocapitalize="none" aria-label="Type a command">
+  </form>
 </main>
+
+<script>
+(function () {
+  var REPLIES = [
+    "It is very dark in here. Somewhere nearby, a grue is clearing its throat.",
+    "Nothing happens. Somewhere, a designer sighs.",
+    "You hear the distant sound of wireframes being rearranged.",
+    "Your lamp flickers. The case studies remain just out of reach.",
+    "A small mailbox sits here. Inside is a note that reads \"Back soon.\"",
+    "You are standing in an open field of whitespace. There is a style guide here.",
+    "A troll blocks the path to the case studies. It shakes its head slowly.",
+    "With great effort, you lift the placeholder. Beneath it is another placeholder.",
+    "A thief slips past and steals one of your moves. Rude.",
+    "You would need a lantern for that. The lantern is also under renovation.",
+    "I don't know that word. I'm a content designer, not a dictionary.",
+    "Time passes. The portfolio is still being overhauled.",
+    "You have been eaten by a grue. Just kidding. Grues don't read portfolios.",
+    "The door is locked. A sticky note on it reads \"final_v3_REAL.fig\".",
+    "Your words echo through the empty gallery... allery... llery.",
+    "There is a faint smell of fresh copy and strong coffee.",
+    "Taken.",
+    "You can't go that way. All roads currently lead to LinkedIn.",
+    "A rusty sign reads: PARDON OUR DUST. CHOOSE YOUR WORDS CAREFULLY.",
+    "Well, that was satisfying for one of us."
+  ];
+  var MAX_TURNS = 6;
+
+  var form  = document.getElementById('prompt');
+  var input = document.getElementById('cmd');
+  var log   = document.getElementById('log');
+  var moves = document.getElementById('moves');
+  var count = 1;
+  var last  = -1;
+
+  function line(text, cls) {
+    var p = document.createElement('p');
+    if (cls) p.className = cls;
+    p.textContent = text;
+    return p;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text) return;
+
+    var i;
+    do { i = Math.floor(Math.random() * REPLIES.length); } while (i === last);
+    last = i;
+
+    var turn = document.createElement('div');
+    turn.appendChild(line('> ' + text.toUpperCase(), 'cmd'));
+    turn.appendChild(line(REPLIES[i]));
+    log.appendChild(turn);
+    while (log.children.length > MAX_TURNS) log.removeChild(log.firstChild);
+
+    moves.textContent = ++count;
+    input.value = '';
+    input.scrollIntoView({ block: 'nearest' });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a') || window.getSelection().toString()) return;
+    input.focus();
+  });
+
+  if (window.matchMedia('(pointer: fine)').matches) input.focus();
+})();
+</script>
 
 </body>
 </html>
