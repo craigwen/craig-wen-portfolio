@@ -4,349 +4,106 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Craig Wen</title>
-<meta name="description" content="Craig Wen — Content Designer. Portfolio coming soon.">
+<meta name="description" content="Craig Wen, Content Designer. Portfolio coming soon.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --bg: #050a05;
+    --fg: #7dff9a;
+    --dim: #3f9a55;
+  }
+
+  html, body { height: 100%; }
+
   body {
-    background: #0d0820;
-    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+    line-height: 1.35;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    -webkit-font-smoothing: antialiased;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 16px;
+    text-shadow: 0 0 6px rgba(125, 255, 154, 0.35);
   }
 
-  .canvas-wrap {
-    position: relative;
-    flex-shrink: 0;
+  main {
+    width: min(100%, 38ch);
+    min-width: 0;
+    display: grid;
+    gap: 1.1em;
   }
 
-  #scene {
-    width: 100%;
-    height: auto;
-    display: block;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
+  .status {
+    display: flex;
+    justify-content: space-between;
+    gap: 1ch;
+    background: var(--fg);
+    color: var(--bg);
+    padding-inline: 1ch;
+    text-shadow: none;
   }
 
-  #bubble {
-    position: absolute;
-    left: 5%;
-    bottom: 87%;
-    max-width: 60%;
-    background: #fef0d9;
-    border: 3px solid #1a0d05;
-    padding: 0.6em 0.9em;
-    font-family: 'Press Start 2P', monospace;
-    font-size: clamp(0.45rem, 1.1vw, 0.7rem);
-    line-height: 2.2;
-    color: #1a0d05;
+  .cmd { color: var(--dim); }
+
+  main p { overflow-wrap: break-word; }
+
+  h1 {
+    font-size: inherit;
+    font-weight: normal;
+    text-transform: uppercase;
   }
 
-  #bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -14px; left: 14px;
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 14px solid #1a0d05;
+  a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  a:hover, a:focus-visible {
+    background: var(--fg);
+    color: var(--bg);
+    text-decoration: none;
+    text-shadow: none;
+    outline: none;
   }
 
-  #bubble::before {
-    content: '';
-    position: absolute;
-    bottom: -9px; left: 17px;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 9px solid #fef0d9;
-    z-index: 1;
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    background: var(--fg);
+    vertical-align: -0.15em;
+    animation: blink 1s steps(1) infinite;
   }
-
-  #bubble a { color: #ff7733; text-decoration: none; }
-  #bubble a:hover { text-decoration: underline; text-underline-offset: 3px; }
-
-  @media (max-width: 600px) {
-    body { justify-content: center; }
+  @keyframes blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; }
   }
 </style>
 </head>
 <body>
 
-<div class="canvas-wrap">
-  <canvas id="scene" aria-label="Pixel art scene: a construction site at sunset, with a pixel character, traffic cones, a sawhorse barrier, and a road"></canvas>
-  <div id="bubble" hidden>
-    <p id="dialogue"></p>
+<main>
+  <div class="status" aria-hidden="true">
+    <span>Craig Wen</span>
+    <span>Moves: 1</span>
   </div>
-</div>
 
-<script>
-(function () {
-  var canvas   = document.getElementById('scene');
-  var ctx      = canvas.getContext('2d');
-  var bubble   = document.getElementById('bubble');
-  var dialogue = document.getElementById('dialogue');
+  <p class="cmd">&gt; LOOK</p>
 
-  var GW = 192, GH = 96;
-  canvas.width  = GW;
-  canvas.height = GH;
+  <div>
+    <h1>Portfolio, Under Renovation</h1>
+    <p>I'm giving my portfolio a much needed overhaul. For now, find me on <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>.</p>
+  </div>
 
-  function px(x, y, c, w, h) {
-    w = w === undefined ? 1 : w;
-    h = h === undefined ? 1 : h;
-    if (x >= GW || y >= GH || x + w <= 0 || y + h <= 0) return;
-    ctx.fillStyle = c;
-    ctx.fillRect(x, y, Math.min(w, GW - x), Math.min(h, GH - y));
-  }
-
-  function lerpColor(c0, c1, t) {
-    function hex(s) { return [parseInt(s.slice(1,3),16), parseInt(s.slice(3,5),16), parseInt(s.slice(5,7),16)]; }
-    var a = hex(c0), b = hex(c1);
-    return 'rgb('+~~(a[0]+(b[0]-a[0])*t)+','+~~(a[1]+(b[1]-a[1])*t)+','+~~(a[2]+(b[2]-a[2])*t)+')';
-  }
-
-  var skyStops = [
-    [0,  '#0d0820'],
-    [14, '#1a1040'],
-    [26, '#3a1250'],
-    [36, '#6a1f45'],
-    [44, '#9b3030'],
-    [52, '#d05025'],
-    [58, '#ff7733'],
-  ];
-
-  function skyAt(row) {
-    for (var i = 0; i < skyStops.length - 1; i++) {
-      var r0 = skyStops[i][0], c0 = skyStops[i][1];
-      var r1 = skyStops[i+1][0], c1 = skyStops[i+1][1];
-      if (row >= r0 && row < r1) return lerpColor(c0, c1, (row - r0) / (r1 - r0));
-    }
-    return skyStops[skyStops.length - 1][1];
-  }
-
-  function drawCone(cx, cy) {
-    px(cx+6,  cy,    '#ffaa77', 2, 2);
-    px(cx+6,  cy+2,  '#ff9966', 2, 2);
-    px(cx+4,  cy+4,  '#ffe8d8', 6, 2);
-    px(cx+2,  cy+6,  '#ffaa77', 2, 2); px(cx+4,  cy+6,  '#ff7733', 6, 2); px(cx+10, cy+6,  '#cc5520', 2, 2);
-    px(cx+2,  cy+8,  '#ffaa77', 2, 2); px(cx+4,  cy+8,  '#ff7733', 6, 2); px(cx+10, cy+8,  '#cc5520', 2, 2);
-    px(cx+2,  cy+10, '#ffe8d8', 10, 2);
-    px(cx,    cy+12, '#ffaa77', 2, 2); px(cx+2,  cy+12, '#ff7733', 10, 2); px(cx+12, cy+12, '#cc5520', 2, 2);
-    px(cx,    cy+14, '#ffaa77', 2, 2); px(cx+2,  cy+14, '#ff7733', 10, 2); px(cx+12, cy+14, '#cc5520', 2, 2);
-    px(cx,    cy+16, '#ffe8d8', 14, 2);
-    px(cx,    cy+18, '#ffaa77', 2, 2); px(cx+2,  cy+18, '#ff7733', 10, 2); px(cx+12, cy+18, '#cc5520', 2, 2);
-    px(cx-2,  cy+20, '#5a3015', 18, 4);
-  }
-
-  function drawBackground() {
-    // Sky
-    for (var y = 0; y < 60; y++) px(0, y, skyAt(y), GW);
-
-    // Ground
-    var ground = ['#3d2010','#3d2010','#2d1508','#2d1508','#2d1508','#2d1508','#251205','#251205','#221004','#221004','#1e0d04','#1e0d04','#1a0d05','#1a0d05','#170b03','#170b03','#140903','#140903','#120802','#120802'];
-    for (var yg = 60; yg < GH; yg++) px(0, yg, ground[yg - 60] || '#120802', GW);
-
-    // Stars
-    [
-      [6,4],[18,8],[28,2],[32,4],[48,2],[64,8],[82,4],[100,2],[116,6],[132,4],[148,8],[166,2],[186,6],
-      [4,16],[14,12],[24,20],[34,14],[50,12],[66,18],[80,16],[96,20],[112,16],[126,22],[142,18],[160,14],[176,16],
-      [8,28],[20,24],[30,32],[40,28],[56,24],[74,30],[90,26],[106,32],[122,26],[140,32],[156,28],[174,22],[188,26],
-      [2,40],[16,44],[26,38],[38,42],[54,38],[70,44],[88,40],[104,46],[122,42],[138,38],[156,44],[172,40]
-    ].forEach(function(s) { px(s[0], s[1], '#e0d0f8', 2, 2); });
-    [[18,8],[64,8],[100,2],[112,16],[88,40]].forEach(function(s) { px(s[0], s[1], '#ffffff', 2, 2); });
-
-    // Moon
-    px(180, 2, '#fff4b0', 6, 6);
-
-    // Barrier
-    px(44, 44, '#8b6040', 104, 2);
-    for (var bx = 44; bx < 148; bx++) {
-      for (var by = 46; by <= 54; by++) {
-        px(bx, by, Math.floor((bx + by) / 10) % 2 === 0 ? '#ffe066' : '#1a0d05');
-      }
-    }
-    px(44, 56, '#8b6040', 104, 2);
-    px(50, 58, '#8b6040', 4, 8);
-    px(46, 64, '#8b6040', 12, 2);
-    px(92, 58, '#8b6040', 4, 6);
-    px(136, 58, '#8b6040', 4, 8);
-    px(132, 64, '#8b6040', 12, 2);
-
-    // Cones
-    drawCone(38, 40);
-    drawCone(156, 40);
-
-    // Road dashes
-    for (var dx = 0; dx < GW; dx += 18) px(dx, 62, '#4a2e10', 10, 2);
-  }
-
-  // === CHARACTER (Craig) ===
-  var HAIR       = '#1a0d05';
-  var SKIN       = '#f0c090';
-  var JACKET     = '#4a7040';
-  var UNDERSHIRT = '#e0cfb0';
-  var PANTS      = '#a89870';
-  var SHOE       = '#5a2818';
-
-  function drawCharacter(cx, baseY, frame, talkFrame) {
-    // Right raised arm (drawn first so face/hair pixels win on any overlap)
-    px(cx+15, baseY-24, JACKET, 3, 2);
-    px(cx+15, baseY-26, JACKET, 3, 2);
-    px(cx+15, baseY-28, JACKET, 3, 2);
-    px(cx+15, baseY-30, JACKET, 3, 2);
-    px(cx+15, baseY-32, JACKET, 3, 2);
-    px(cx+15, baseY-34, JACKET, 3, 2);
-    px(cx+15, baseY-36, JACKET, 3, 2);
-    px(cx+15, baseY-38, JACKET, 3, 2);
-    px(cx+15, baseY-40, JACKET, 3, 2);
-    px(cx+15, baseY-42, SKIN,   3, 2);
-    px(cx+15, baseY-44, SKIN,   3, 2);
-    // Hair dome
-    px(cx+3, baseY-50, HAIR, 9,  2);
-    px(cx+1, baseY-48, HAIR, 13, 2);
-    px(cx,   baseY-46, HAIR, 15, 2);
-    px(cx,   baseY-44, HAIR, 15, 2);
-    // Forehead
-    px(cx, baseY-42, SKIN, 15, 2);
-    // Sunglasses
-    px(cx,   baseY-40, SKIN,      15, 2);
-    px(cx+1, baseY-40, '#1a1428', 13, 2);
-    px(cx+2, baseY-40, '#2e2850',  2, 2);
-    px(cx,   baseY-38, SKIN,      15, 2);
-    px(cx+1, baseY-38, '#1a1428', 13, 2);
-    // Under-glasses bridge
-    px(cx, baseY-36, SKIN, 15, 2);
-    // Nose
-    px(cx,   baseY-34, SKIN,      15, 2);
-    px(cx+5, baseY-34, '#c08050',  2, 2);
-    px(cx+8, baseY-34, '#c08050',  2, 2);
-    // Upper lip
-    px(cx, baseY-32, SKIN, 15, 2);
-    // Mouth (talkFrame: 0=closed, 1=open)
-    px(cx, baseY-30, SKIN, 15, 2);
-    if (talkFrame === 1) {
-      px(cx+4, baseY-30, '#c06030', 7, 1);
-      px(cx+4, baseY-29, '#2a0808', 7, 1);
-    } else {
-      px(cx+4, baseY-30, '#8b3010', 7, 2);
-    }
-    // Chin
-    px(cx, baseY-28, SKIN, 15, 2);
-    // Neck
-    px(cx+4, baseY-26, SKIN, 6, 2);
-    // Shoulders
-    px(cx, baseY-24, JACKET, 15, 2);
-    // Body: left hanging arm + open jacket + undershirt center
-    px(cx-3,  baseY-22, JACKET,     3, 2);
-    px(cx,    baseY-22, JACKET,     4, 2);
-    px(cx+4,  baseY-22, UNDERSHIRT, 7, 2);
-    px(cx+11, baseY-22, JACKET,     4, 2);
-    px(cx-3,  baseY-20, JACKET,     3, 2);
-    px(cx,    baseY-20, JACKET,     4, 2);
-    px(cx+4,  baseY-20, UNDERSHIRT, 7, 2);
-    px(cx+11, baseY-20, JACKET,     4, 2);
-    px(cx-3,  baseY-18, JACKET,     3, 2);
-    px(cx,    baseY-18, JACKET,     4, 2);
-    px(cx+4,  baseY-18, UNDERSHIRT, 7, 2);
-    px(cx+11, baseY-18, JACKET,     4, 2);
-    // Belt
-    px(cx-3, baseY-16, JACKET,    3, 2);
-    px(cx,   baseY-16, '#7a4820', 15, 2);
-    // Waist
-    px(cx-3, baseY-14, JACKET, 3, 2);
-    px(cx,   baseY-14, PANTS,  15, 2);
-    // Hips + left hand
-    px(cx-3, baseY-12, SKIN,  3, 2);
-    px(cx,   baseY-12, PANTS, 15, 2);
-    // Lower torso
-    px(cx, baseY-10, PANTS, 15, 2);
-    // Legs
-    px(cx, baseY-8, PANTS, 6, 2); px(cx+9, baseY-8, PANTS, 6, 2);
-    px(cx, baseY-6, PANTS, 6, 2); px(cx+9, baseY-6, PANTS, 6, 2);
-    px(cx, baseY-4, PANTS, 6, 2); px(cx+9, baseY-4, PANTS, 6, 2);
-    // Shoes
-    if (frame === 0) {
-      px(cx-1, baseY-2, SHOE, 8, 4); px(cx+9, baseY-2, SHOE, 8, 4);
-    } else if (frame === 1) {
-      px(cx-2, baseY-2, SHOE, 9, 4); px(cx+9, baseY-2, SHOE, 7, 4);
-    } else {
-      px(cx-1, baseY-2, SHOE, 7, 4); px(cx+9, baseY-2, SHOE, 9, 4);
-    }
-  }
-
-  // Draw background once, snapshot for fast restore
-  drawBackground();
-  var bgData = ctx.getImageData(0, 0, GW, GH);
-
-  // === ANIMATION ===
-  var startTime = null;
-  var WALK_MS   = 1000;
-  var START_X   = -30;
-  var END_X     = 4;
-  var CHAR_Y    = 62;
-  var walkDone     = false;
-  var talkFrame    = 0;
-  var talkInterval = null;
-
-  function showBubble() {
-    var plain = "I'm giving my portfolio a much needed overhaul. For now, find me on ";
-    var link  = 'LinkedIn';
-    var full  = plain + link;
-    var i     = 0;
-    bubble.hidden = false;
-    talkInterval = setInterval(function() {
-      talkFrame = talkFrame === 0 ? 1 : 0;
-      ctx.putImageData(bgData, 0, 0);
-      drawCharacter(END_X, CHAR_Y, 0, talkFrame);
-    }, 160);
-    (function type() {
-      dialogue.textContent = full.slice(0, ++i);
-      if (i < full.length) {
-        setTimeout(type, 40);
-      } else {
-        clearInterval(talkInterval);
-        talkFrame = 0;
-        ctx.putImageData(bgData, 0, 0);
-        drawCharacter(END_X, CHAR_Y, 0, 0);
-        dialogue.innerHTML = plain +
-          '<a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>';
-      }
-    })();
-  }
-
-  function animate(ts) {
-    if (!startTime) startTime = ts;
-    var elapsed = ts - startTime;
-
-    ctx.putImageData(bgData, 0, 0);
-
-    var charX, frame;
-    if (elapsed < WALK_MS) {
-      var t = elapsed / WALK_MS;
-      charX = Math.floor(START_X + (END_X - START_X) * t);
-      frame = (Math.floor(elapsed / 130) % 2) + 1;
-    } else {
-      charX = END_X;
-      frame = 0;
-      if (!walkDone) {
-        walkDone = true;
-        showBubble();
-      }
-    }
-
-    drawCharacter(charX, CHAR_Y, frame, 0);
-
-    if (!walkDone) requestAnimationFrame(animate);
-  }
-
-  requestAnimationFrame(animate);
-
-})();
-</script>
+  <p aria-hidden="true">&gt; <span class="cursor"></span></p>
+</main>
 
 </body>
 </html>
