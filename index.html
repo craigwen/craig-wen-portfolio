@@ -56,10 +56,6 @@
 
   main p { overflow-wrap: break-word; }
 
-  h1 {
-    font-size: inherit;
-    font-weight: normal;
-  }
 
   a {
     color: var(--fg);
@@ -114,16 +110,13 @@
 
 <main>
   <div class="status" aria-hidden="true">
-    <span>Craig Wen</span>
+    <span>craigwen.com</span>
     <span>Moves: <span id="moves">1</span></span>
   </div>
 
   <p class="cmd">&gt; LOOK</p>
 
-  <div>
-    <h1>craigwen.com</h1>
-    <p>I'm giving my portfolio a much needed overhaul. For now, find me on <a href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>.</p>
-  </div>
+  <p>I'm giving my portfolio a much needed overhaul. For now, find me on <a id="linkedin" href="https://www.linkedin.com/in/craig-wen/">LinkedIn</a>.</p>
 
   <div id="log" aria-live="polite"></div>
 
@@ -178,6 +171,11 @@
     e.preventDefault();
     var text = input.value.trim();
     if (!text) return;
+
+    if (/linkedin|craig/i.test(text)) {
+      window.location.href = document.getElementById('linkedin').href;
+      return;
+    }
 
     var i;
     do { i = Math.floor(Math.random() * REPLIES.length); } while (i === last);
